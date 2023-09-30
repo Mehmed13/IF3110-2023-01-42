@@ -3,7 +3,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.loginCt {
+.registerCt {
   height: 100%;
   min-height: 100vh;
   width: 100%;
@@ -15,7 +15,7 @@ body {
   padding: 0;
 }
 
-.loginFormSection {
+.registerFormSection {
   height: 100%;
   width: 100%;
   display: flex;
@@ -24,7 +24,7 @@ body {
   align-items: center;
 }
 
-.loginHeroSection {
+.registerHeroSection {
   display: none;
   background-color: #fdf8ee;
   width: 100%;
@@ -33,7 +33,7 @@ body {
   overflow: hidden;
 }
 
-.loginHeroSection .womanHero {
+.registerHeroSection .womanHero {
   width: auto;
   height: 50%;
   position: absolute;
@@ -43,7 +43,7 @@ body {
   z-index: 2;
 }
 
-.loginHeroSection .bgHero {
+.registerHeroSection .bgHero {
   width: 90%;
   height: auto;
   position: absolute;
@@ -53,12 +53,12 @@ body {
   z-index: 1;
 }
 
-.loginHeader {
+.registerHeader {
   font-family: "Jost", sans-serif;
   font-weight: 600;
 }
 
-.loginFormContainer {
+.registerFormContainer {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -68,7 +68,7 @@ body {
   gap: 2rem;
 }
 
-.loginFormContainer form {
+.registerFormContainer form {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -137,19 +137,19 @@ body {
 }
 
 @media (min-width: 1024px) {
-  .loginCt {
+  .registerCt {
     flex-direction: row;
   }
-  .loginFormSection {
+  .registerFormSection {
     min-width: 600px;
   }
-  .loginHeroSection {
+  .registerHeroSection {
     display: block;
   }
 }
 
 @media (min-width: 640px) {
-  .loginFormContainer {
+  .registerFormContainer {
     max-width: 500px;
   }
 }
