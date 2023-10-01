@@ -22,10 +22,10 @@
   </head>
   <body>
     <header>
-        <section class="search-box">
+        <section class="searchBox">
             <img 
                 src="../../../../assets/Lup.png" 
-                alt="lup icon"
+                alt="Lup icon"
             />
             <input 
                 type="text" 
@@ -35,24 +35,24 @@
 
             <img 
                 src="../../../../assets/Filter.png" 
-                alt="filter icon"
+                alt="Filter icon"
             />
         </section>
-        <section class="nav-buttons">
-            <div class="nav-button">
+        <section class="navButtons">
+            <div class="navButton">
                 <p>Home</p>
             </div>
-            <div class="nav-button">
+            <div class="navButton">
                 <p>About Us</p>
             </div>
-            <div class="nav-button">
+            <div class="navButton">
                 <p>Course</p>
             </div>
-            <div class="nav-button">
+            <div class="navButton">
                 <p>Exercise</p>
             </div>
         </section>
-        <section class="profile-button">
+        <section class="profileButton">
             <img 
                 src="../../../../assets/albert.jpg" 
                 alt="profile picture"
@@ -61,7 +61,81 @@
     </header>
 
     <main>
+        <section class="pageTitle">
+            <h2>User Profile</h2>
+        </section>
+        <section class="containerProfile">
+            <div class="profile" id="profilePicture">
+                <div class="head">
+                    <h3>Profile Picture</h3>
+                </div>
+                <div class="picture">
+                    <img 
+                        src="../../../../assets/albert.jpg" 
+                        alt="profile picture"
+                    />
+                    <button class="choosePhotoButton">
+                        Choose Photo
+                    </button>
+                </div>
+            </div>
+            <div class="profile" id="firstName">
+                <div class="head">
+                    <h3>First Name</h3>
+                </div>
+                <input 
+                    type="text"
+                    class="profileInput"
+                    placeholder="Albert"
+                />              
+            </div>
+            <div class="profile" id="lastName">
+                <div class="head">
+                    <h3>Last Name</h3>
+                </div>
+                <input 
+                    type="text"
+                    class="profileInput"
+                    placeholder="Moriarty"
+                />              
+            </div>
+            <div class="profile" id="username">
+                <div class="head">
+                    <h3>Username</h3>
+                </div>
+                <input 
+                    type="text"
+                    class="profileInput"
+                    placeholder="moriartea"
+                />              
+            </div>
+            <div class="profile" id="email">
+                <div class="head">
+                    <h3>Email</h3>
+                </div>
+                <input 
+                    type="text"
+                    class="profileInput"
+                    placeholder="mortea@gmail.com"
+                />              
+            </div>
+            <div class="profile" id="password">
+                <div class="head">
+                    <h3>Password</h3>
+                </div>
+                <input 
+                    type="password"
+                    class="profileInput"
+                    placeholder="****"
+                />              
+            </div>
 
+            <section class="saveButton" >
+                <button type="submit">
+                    Save Changes
+                </button>
+            </section>
+        </section>
     </main>
 
     <footer>
