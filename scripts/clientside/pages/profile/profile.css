@@ -1,0 +1,112 @@
+body {
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+}
+
+header{
+    background-color:#4D2C5E;
+    /* height: 100%; */
+    /* min-height: 100vh; */
+    /* width: 100%; */
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
+    align-items: center;
+    /* margin: .25; */
+    padding: 1% 2.5% ;
+}
+
+/* .navbar .navButtons{
+float: right;
+} */
+.searchBox{
+    width: 45%;
+    display: block;
+    display: flex; /* Use flex to center the search box content */
+    flex-direction: row; /* Make sure the content is in a row */
+    font-family: "Poppins", sans-serif;
+    border-color: #fff;
+    border-style: solid;
+    border-radius: 12px;
+    height: fit-content;
+    padding: 0.1% 0% 0.1% 1%;
+    align-items: center;
+    margin-right: 10%;
+}
+
+
+.searchBox input {
+    padding: 5px;
+    border-radius: 12px;
+    border-color: #4D2C5E;
+    color: #fff;
+    border-style: solid;
+    outline: none;
+    font-size: 12px;
+    font-family: "Poppins", sans-serif;
+    margin: 0% 20% 0% 0%;
+    width: 70%; 
+    background-color: #4D2C5E;
+  }
+
+.navbar .features{
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertically align items */
+}
+
+.navbar li {
+    /* display: inline-block; */
+    margin-left: 70px;
+    position: relative;
+    /* float: left; */
+    /* padding-top: 13px; */
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    /* text-transform: uppercase; */
+    font-size: 14px;
+}
+
+.navbar a:hover {
+    color: #000;
+}
+
+.navbar a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background-color: white;
+
+    position: absolute;
+    top: 0;
+    width: 0%;
+
+    transition: all ease-in-out 250ms;
+}
+
+.navbar a:hover::before {
+    position: static;
+    width: 100%;    
+}
+
+#profileButton{
+    float:right;
+}
+#profileButton img{
+    height: 50px;
+    border-radius: 50%;
+}
+
+

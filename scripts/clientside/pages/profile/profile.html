@@ -5,7 +5,7 @@
     <link rel="icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Login</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="./profile.css" />
     <link rel="stylesheet" href="../../global.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,10 +22,11 @@
   </head>
   <body>
     <header>
-        <section class="searchBox">
+        <section class="navbar searchBox">
             <img 
                 src="../../../../assets/Lup.png" 
                 alt="Lup icon"
+                id="lup"
             />
             <input 
                 type="text" 
@@ -36,28 +37,23 @@
             <img 
                 src="../../../../assets/Filter.png" 
                 alt="Filter icon"
+                id="filter"
             />
         </section>
-        <section class="navButtons">
-            <div class="navButton">
-                <p>Home</p>
-            </div>
-            <div class="navButton">
-                <p>About Us</p>
-            </div>
-            <div class="navButton">
-                <p>Course</p>
-            </div>
-            <div class="navButton">
-                <p>Exercise</p>
-            </div>
+        <section class="navbar features">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Course</a></li>
+                <li><a href="#">Exercise</a></li>
+                <li id="profileButton">
+                    <img 
+                        src="../../../../assets/albert.jpg" 
+                        alt="profile picture"
+                    />
+                </li>
+              </ul>
         </section>
-        <section class="profileButton">
-            <img 
-                src="../../../../assets/albert.jpg" 
-                alt="profile picture"
-            />
-        </section>    
     </header>
 
     <main>
