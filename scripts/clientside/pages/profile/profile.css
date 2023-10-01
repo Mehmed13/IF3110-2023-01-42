@@ -1,29 +1,25 @@
 body {
     height: 100vh;
     font-family: "Poppins", sans-serif;
+    background-color: #FDF8EE;
 }
+
+
+/*HEADER*/
 
 header{
     background-color:#4D2C5E;
-    /* height: 100%; */
-    /* min-height: 100vh; */
-    /* width: 100%; */
     display: flex;
     flex-direction: row;
-    /* justify-content: center; */
     align-items: center;
-    /* margin: .25; */
     padding: 1% 2.5% ;
 }
 
-/* .navbar .navButtons{
-float: right;
-} */
 .searchBox{
     width: 45%;
     display: block;
-    display: flex; /* Use flex to center the search box content */
-    flex-direction: row; /* Make sure the content is in a row */
+    display: flex; 
+    flex-direction: row; 
     font-family: "Poppins", sans-serif;
     border-color: #fff;
     border-style: solid;
@@ -61,21 +57,17 @@ float: right;
     list-style: none;
     display: flex;
     justify-content: center;
-    align-items: center; /* Vertically align items */
+    align-items: center;
 }
 
 .navbar li {
-    /* display: inline-block; */
     margin-left: 70px;
     position: relative;
-    /* float: left; */
-    /* padding-top: 13px; */
 }
 
 .navbar a {
     color: #fff;
     text-decoration: none;
-    /* text-transform: uppercase; */
     font-size: 14px;
 }
 
@@ -106,7 +98,176 @@ float: right;
 }
 #profileButton img{
     height: 50px;
+    width:50px;
     border-radius: 50%;
 }
 
 
+/*MAIN*/
+
+main{
+    align-items: center;
+    padding: 1% 2.5% 5% 2.5%;
+}
+
+.pageLabel{
+    color: #4D2C5E;
+}
+
+.formContainer{
+    background-color: #fff;
+    padding: 1% 5% 3%;
+    border-radius: 20px;
+    color: #4D2C5E;
+}
+
+.profileContainer{
+    margin-bottom: 5%;
+}
+
+.picture{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: transparent;
+    transition: all .3s ease;
+    position: relative;
+    transition: all .3s ease;
+    width: fit-content;
+}
+
+.picture span {
+    display: inline-flex;
+    padding: 0.2em;
+    height: 2em;
+  }
+
+.picture label{
+    cursor: pointer;
+    height: 200px;
+    width: 200px;
+}
+
+.picture:hover label{
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgb(250, 250, 250);
+    border-radius: 50%;
+    display: flex;
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease-in-out;
+    margin-bottom: 0;
+
+}
+
+.picture img{
+    z-index: 0;
+    object-fit: cover;
+    position: absolute;
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+    z-index: 0;
+    border-radius: 50%;
+    height: 200px;
+    width:200px;
+}
+
+.picture input{
+    display: none;
+}
+
+
+.formContainer button{
+    background-color: #4D2C5E;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 12px;
+    border-color: #4D2C5E;
+    color: #fff;
+    border-style: solid;
+    outline: none;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    opacity: .9;
+}
+
+.formContainer button:hover{
+    /* border-color: black;  */
+    opacity: 1;
+}
+
+.formContainer button{
+    transform: scale(0.95);
+}
+
+.profile input{
+    padding: 10px;
+    border-radius: 12px;
+    border-color: #c3c3c3;
+    border-style: solid;
+    outline: none;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+}
+
+.profile input:focus{
+    border-color: #4d2c5e;
+}
+
+.profile input::placeholder{
+    color: #8a8a8a;
+}
+
+
+/*FOOTER*/
+
+footer{
+    background-color:#4D2C5E;
+    padding: 1% 2.5% ;
+    color: #fff;
+}
+
+.contacts{
+    align-items: center;
+}
+
+.contacts img{
+    display: block;
+    height: 25px;
+    width: 25px;
+    margin-bottom: 1%;
+}
+
+.contact{
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contact p{  
+    display: inline-block;
+    margin-left: 1%;
+}
+
+
+
+
+/*MEDIA QUERY*/
+/* Media Query for Larger Screens */
+@media (min-width: 1024px) {
+    .searchBox {
+        width: 70%;
+        margin-right: 5%;
+    }
+
+    .searchBox input {
+        margin: 0% 10% 0% 0%;
+        width: 80%;
+    }
+
+    .navbar li {
+        margin-left: 70px;
+    }
+}
