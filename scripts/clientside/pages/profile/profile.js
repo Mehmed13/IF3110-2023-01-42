@@ -4,20 +4,20 @@ const PROFILE_PICTURE_PATH = DATA_PATH + "/profilePicture"
 var profilePictureURL = PROFILE_PICTURE_PATH+"/";
 var defaultProfilePictureURL = "../../assets/albert.jpg";
 var inputFile = document.getElementById("profilePhotoFile");
-var profileimage = document.getElementById("output");
+var profileImage = document.getElementById("output");
 var profileIcon = document.getElementById("profileIcon");
 
 // Dummy, nantinya bakal disesuaiin ama user yg login 
 var profileId = 1;
 
 function loadFile(event) {
-    image.src = URL.createObjectURL(event.target.files[0]);
+    profileImage.src = URL.createObjectURL(event.target.files[0]);
     profileIcon.src = URL.createObjectURL(event.target.files[0]);
 };
 
 function loadProfile(){
   getProfilePicture();
-  image.src = profilePictureURL;
+  profileImage.src = profilePictureURL;
 }
 
 function getProfilePicture(){
@@ -32,10 +32,10 @@ function getProfilePicture(){
             }
         }
     };
-    xhttp.open("GET","http://localhost:8000/api/profileapi/getprofile?profile_id="+profileId,true);
-    // xhttp.setRequestHeader("Accept", "application/json");
+    xhttp.open("GET","http://localhost:8000/api/userapi/getprofile?profile_id="+profileId,true);
+    xhttp.setRequestHeader("Accept", "application/json");
     xhttp.withCredentials = true;
     xhttp.send();
 }
 inputFile.addEventListener("change", loadFile);
-image.addEventListener("load", )
+profileImage.addEventListener("load", loadProfile)
