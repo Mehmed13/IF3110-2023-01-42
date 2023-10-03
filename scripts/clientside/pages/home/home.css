@@ -142,6 +142,63 @@ main{
     height: 100px;
 }
 
+main .list {
+	width: 100%;
+	max-width: 768px;
+	background-color: #FFF;
+	border: 1px solid #CCC;
+	margin-top: 25px;
+}
+
+.courseContents .course {
+	padding: 15px;
+	border-bottom: 1px solid #CCC;
+}
+.courseContents .course:last-of-type {
+	border-bottom: none;
+}
+.courseContents .course:hover {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+.pagenumbers {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.pagenumbers button {
+	width: 50px;
+	height: 50px;
+
+	appearance: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+
+	background-color: #4D2C5E;
+
+	margin: 5px;
+	transition: 0.4s;
+
+	color: #FFF;
+	font-size: 18px;
+	text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pagenumbers button:hover {
+	background-color: #d7a3ef;
+}
+
+.pagenumbers button.active {
+	background-color: #d7a3ef;
+	box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+
 
 .exercise {
     display: flex;
