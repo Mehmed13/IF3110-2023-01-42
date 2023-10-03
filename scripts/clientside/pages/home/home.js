@@ -116,37 +116,65 @@ function DisplayItem (items, wrapper, rows_per_page, page) {
 	}
 }
 
-function SetupPagination (current_page, items, element,  wrapper, rows_per_page) {
+function SetupCoursePagination (current_page, items, element,  wrapper, rows_per_page) {
 	wrapper.innerHTML = "";
 
 	let page_count = Math.ceil(items.length / rows_per_page);
 	for (let i = 1; i < page_count + 1; i++) {
-		let btn = PaginationButton(current_page, i, items, element);
+		let btn = CoursePaginationButton(current_page, i, items, element);
 		wrapper.appendChild(btn);
 	}
 }
 
-function PaginationButton (current_page, page, items, element) {
+function CoursePaginationButton (current_page, page, items, element) {
 	let button = document.createElement('button');
 	button.innerText = page;
 
-	if (current_page == page) button.classList.add('active');
+	if (current_page == page) button.classList.add('activeCourse');
 
 	button.addEventListener('click', function () {
 		current_page = page;
 		DisplayItem(items, element, rows, current_page);
 
-		let current_btn = document.querySelector('.pagenumbers button.active');
-		current_btn.classList.remove('active');
+		let current_btn = document.querySelector('.pagenumbers button.activeCourse');
+		current_btn.classList.remove('activeCourse');
 
-		button.classList.add('active');     
+		button.classList.add('activeCourse');     
+	});
+
+	return button;
+}
+function SetupExercisePagination (current_page, items, element,  wrapper, rows_per_page) {
+	wrapper.innerHTML = "";
+
+	let page_count = Math.ceil(items.length / rows_per_page);
+	for (let i = 1; i < page_count + 1; i++) {
+		let btn = ExercisePaginationButton(current_page, i, items, element);
+		wrapper.appendChild(btn);
+	}
+}
+
+function ExercisePaginationButton (current_page, page, items, element) {
+	let button = document.createElement('button');
+	button.innerText = page;
+
+	if (current_page == page) button.classList.add('activeExercise');
+
+	button.addEventListener('click', function () {
+		current_page = page;
+		DisplayItem(items, element, rows, current_page);
+
+		let current_btn = document.querySelector('.pagenumbers button.activeExercise');
+		current_btn.classList.remove('activeExercise');
+
+		button.classList.add('activeExercise');     
 	});
 
 	return button;
 }
 
 DisplayItem(course_items, course_element, rows, current_course_page);
-SetupPagination(current_course_page, course_items, course_element, course_pagination_element, rows);
+SetupCoursePagination(current_course_page, course_items, course_element, course_pagination_element, rows);
 
 DisplayItem(exercise_items, exercise_element, rows, current_exercise_page)
-SetupPagination(current_exercise_page, exercise_items, exercise_element, exercise_pagination_element, rows);
+SetupExercisePagination(current_exercise_page, exercise_items, exercise_element, exercise_pagination_element, rows);

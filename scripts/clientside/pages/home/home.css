@@ -192,7 +192,11 @@ main .list {
 	background-color: #d7a3ef;
 }
 
-.pagenumbers button.active {
+.pagenumbers button.activeCourse {
+	background-color: #d7a3ef;
+	box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+}
+.pagenumbers button.activeExercise {
 	background-color: #d7a3ef;
 	box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
 }
