@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '\base.php';
+require_once __DIR__ . '/../constants/base.php';
 
 class Database
 {
@@ -18,11 +18,37 @@ class Database
             echo "Connection failed: " . $e->getMessage();
         }
     }
-    public function query($query)
+ 
+    public function startTransaction()
     {
-        $this->stmt = $this->conn->query($query);
+        try {
+            $this->conn->beginTransaction();
+        } catch (PDOException $e) {
+            return false;
+        }
     }
-    public function prepare($query)
+
+    public function commit()
+    {
+        try {
+            $this->conn->beginTransaction();
+        } catch (PDOException $e) {
+            return $this->conn->commit();
+        }
+    }
+
+    public function rollback()
+    {
+        try {
+            $this->conn->beginTransaction();
+        } catch (PDOException $e) {
+            return $this->conn->rollBack();
+        }
+    }
+
+
+
+    public function query($query)
     {
         $this->stmt = $this->conn->prepare($query);
     }
