@@ -22,8 +22,10 @@ function login() {
 
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
-      window.location = "http://localhost:8080/pages/home/home.html";
+      const resStatus = JSON.parse(this.responseText).status;
+      if (resStatus) {
+        window.location = "http://localhost:8080/pages/home/home.html";
+      }
     }
   };
 
