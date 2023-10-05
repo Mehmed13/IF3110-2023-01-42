@@ -8,17 +8,18 @@ var profileImage = document.getElementById("output");
 var profileIcon = document.getElementById("profileIcon");
 
 // Dummy, nantinya bakal disesuaiin ama user yg login 
-var profileId = 1;
+var profileId = 2;
 
 function loadFile(event) {
     profileImage.src = URL.createObjectURL(event.target.files[0]);
     profileIcon.src = URL.createObjectURL(event.target.files[0]);
 };
 
-function loadProfile(){
-  getProfilePicture();
+function loadProfile(profilePictureURL){
   profileImage.src = profilePictureURL;
+  profileIcon.src = profilePictureURL;
 }
+
 
 function getProfilePicture(){
     var xhttp = new XMLHttpRequest();
@@ -26,10 +27,11 @@ function getProfilePicture(){
         if(this.readyState==4 && this.status==200){
             var profileFile = JSON.parse(this.responseText);
             if(profileFile['status']){
-                profilePictureURL+= profileFile['data'];
+                profilePictureURL+= profileFile['data']['profile_pict'];
             }else{
                 profilePictureURL = defaultProfilePictureURL;
             }
+            loadProfile(profilePictureURL);
         }
     };
     xhttp.open("GET","http://localhost:8000/api/userapi/getprofile?profile_id="+profileId,true);
@@ -37,5 +39,7 @@ function getProfilePicture(){
     xhttp.withCredentials = true;
     xhttp.send();
 }
+
 inputFile.addEventListener("change", loadFile);
-profileImage.addEventListener("load", loadProfile)
+// profileImage.addEventListener("load", loadProfile)
+window.addEventListener("load", getProfilePicture);
