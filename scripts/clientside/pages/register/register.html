@@ -20,7 +20,7 @@
     />
     <script src="./registerjs.js"></script>
   </head>
-  <body>
+  <body onload="auth()">
     <div class="registerCt">
       <section class="registerHeroSection">
         <img
@@ -33,13 +33,13 @@
       <section class="registerFormSection">
         <h1 class="registerHeader">Create an account</h1>
         <div class="registerFormContainer">
-          <form>
+          <form method="POST">
             <div class="textInput">
               <label>first name</label>
               <input
                 class="transition-all"
                 placeholder="input first name"
-                id="firstName"
+                id="nama_depan"
                 type="text"
               />
             </div>
@@ -48,7 +48,7 @@
               <input
                 class="transition-all"
                 placeholder="input last name"
-                id="lastName"
+                id="nama_belakang"
                 type="text"
               />
             </div>
@@ -84,11 +84,11 @@
             <button
               type="submit"
               class="submitButton transition-all"
-              onclick="test()"
+              onclick="register()"
             >
               Register
             </button>
-            <p>sudah punya akun? <a href="../../index.html">Login</a></p>
+            <p>sudah punya akun? <a href="../login/login.html">Login</a></p>
           </div>
         </div>
       </section>
