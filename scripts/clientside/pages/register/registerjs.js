@@ -4,6 +4,7 @@ function test() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const singerdata = JSON.parse(this.responseText).data;
+      console.log(singerdata);
       appendData(singerdata);
     }
   };
