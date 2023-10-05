@@ -106,6 +106,35 @@ main{
     padding: 1% 2.5% 5% 2.5%;
 }
 
+button{
+    background-color: #4D2C5E;
+    margin-bottom: 3%;
+    margin-right: 3%;
+    padding-right: 5%;
+    padding-left: 5%;
+    border-radius: 15px;
+    border: none;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+button:hover{
+    scale: 110%;
+}
+
+button:active{
+    background-color: #2f133c;
+}
+
+.addcourse{
+    text-align: center;
+}
+
+h3{
+    color: white;
+}
+
 .pageLabel{
     color: #4D2C5E;
 }
