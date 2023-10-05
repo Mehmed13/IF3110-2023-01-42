@@ -116,11 +116,25 @@ main{
     display: block;
     display: flex;
     margin-left: 5%;
+    margin-bottom: 3%;
     padding-left: 2%;
     border-radius: 15px;
     flex-direction: row;
     color: #4D2C5E;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.material:hover{
+    scale: 110%;
+}
+
+.material:active{
+    background-color: rgb(229, 235, 240);
+}
+
+.material-link {
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /*FOOTER*/
