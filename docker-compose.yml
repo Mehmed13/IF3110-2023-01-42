@@ -15,7 +15,7 @@ services:
       - ./scripts/serverside:/var/www/html/
     ports:
       - 8000:80
-  frontend:
+  frontend: 
     build:
       context: ./
       dockerfile: frontend.Dockerfile
@@ -24,3 +24,13 @@ services:
       - ./scripts/clientside:/var/www/html/
     ports:
       - 8080:80
+  db:
+      image: mysql:latest
+      volumes:
+        - ./db_data:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: admin123
+        MYSQL_DATABASE: studydojo
+      container_name: database
+      ports:
+        - 3306:3306
