@@ -1,0 +1,8 @@
+ID_Pengguna
+nama_depan
+nama_belakang
+username
+email
+isVerified
+role
+profile_pict

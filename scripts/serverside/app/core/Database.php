@@ -9,16 +9,21 @@ class Database
 
     public function __construct()
     {
-
+        $dsn = 'mysql:host=' . DB_SERVER . ';port=' . DB_PORT . ';dbname=' . DB_DATABASE;
+        $option = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_TIMEOUT => 600,
+            PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+        ];
         try {
-            $this->conn = new PDO("mysql:host=" . DB_SERVER . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
+            $this->conn = new PDO($dsn, DB_USERNAME, DB_PASSWORD, $option);
             // Set the PDO error mode to exception
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
     }
- 
+
     public function startTransaction()
     {
         try {

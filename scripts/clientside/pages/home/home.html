@@ -5,8 +5,8 @@
     <link rel="icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Profile</title>
-    <link rel="stylesheet" href="./profile.css" />
+    <title>Home</title>
+    <link rel="stylesheet" href="./home.css" />
     <link rel="stylesheet" href="../../global.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,8 +18,8 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
       rel="stylesheet"
     />
-</head>
-<body>
+  </head>
+  <body>
     <header>
         <section class="navbar searchBox">
             <img 
@@ -52,98 +52,47 @@
                         id="profileIcon"
                     />
                 </li>
-            </ul>
+              </ul>
         </section>
     </header>
-    
+
     <main>
-        <section class="pageLabel">
-            <h2>User Profile</h2>
-        </section>
-        <section class="formContainer">
-            <div class="profileContainer">
-                <div class="profile" id="profilePicture">
-                    <div class="head">
-                        <h3>Profile Picture</h3>
-                    </div>
-                    <div class="picture">
-                        <label class="button" for="profilePhotoFile">
-                            <span>Choose Photo</span>                            
-                        </label>
-                        <input
-                        id="profilePhotoFile" 
-                        type="file" 
-                        class="choosePhotoButton"
-                        />
-                        <img 
-                            src="../../assets/albert.jpg" 
-                            alt="profile picture"
-                            id="output"
-                        />
-                        
-                    </div>
+        <section class="course">
+            <div class="courseContainer">
+                <div class="courseLabel">
+                    <h2>Course</h2>
                 </div>
-                <div class="profile" id="firstName">
-                    <div class="head">
-                        <h3>First Name</h3>
-                    </div>
-                    <input 
-                        type="text"
-                        class="profileInput"
-                        placeholder="Albert"
-                    />              
+                <div class="courseContents">
                 </div>
-                <div class="profile" id="lastName">
-                    <div class="head">
-                        <h3>Last Name</h3>
-                    </div>
-                    <input 
-                        type="text"
-                        class="profileInput"
-                        placeholder="Moriarty"
-                    />              
-                </div>
-                <div class="profile" id="username">
-                    <div class="head">
-                        <h3>Username</h3>
-                    </div>
-                    <input 
-                        type="text"
-                        class="profileInput"
-                        placeholder="moriartea"
-                    />              
-                </div>
-                <div class="profile" id="email">
-                    <div class="head">
-                        <h3>Email</h3>
-                    </div>
-                    <input 
-                    type="text"
-                    class="profileInput"
-                        placeholder="mortea@gmail.com"
-                    />              
-                </div>
-                <div class="profile" id="password">
-                    <div class="head">
-                        <h3>Password</h3>
-                    </div>
-                    <input 
-                        type="password"
-                        class="profileInput"
-                        placeholder="****"
-                    />              
+                <div class="pagenumbers coursePage" id="coursePagination">
+                    
                 </div>
             </div>
+            <div class="bgBoy">
+                <img src="../../assets/bgboy.png" alt="boy is learning">
+            </div>
+        </section>
         
+        <section class="exercise">
+            <div class="bgGirl">
+                <img src="../../assets/bggirl.png" alt="girl is learning">
+            </div>
+            <div class="exerciseContainer">
+                <div class="exerciseLabel">
+                    <h2>Exercise</h2>
+                </div>
+                <div class="exerciseContents">
+                    
+                </div>
+                <div class="pagenumbers exercisePage" id="exercisePagination">
+                    
+                </div>
 
-            <section class="saveButton" >
-                <button class="button" type="submit">
-                    Save Changes
-                </button>
-            </section>
+            </div>
+
         </section>
     </main>
-    
+
     <footer>
         <div class="head">
             <h2>Contact Us</h2>
@@ -158,7 +107,7 @@
             </div>
             <div class="contact">
                 <img 
-                src="../../assets/waicon.png" 
+                    src="../../assets/waicon.png" 
                     alt="whatsapp icon"
                 />
                 <p>+6289587123114</p>
@@ -172,7 +121,7 @@
             </div>
             <div class="contact">
                 <img 
-                src="../../assets/yticon.png" 
+                    src="../../assets/yticon.png" 
                     alt="youtube icon"
                 />
                 <p>Dojo Study</p>
@@ -182,11 +131,10 @@
                     src="../../assets/locicon.png" 
                     alt="location icon"
                 />
-                <p>Jl. Jend. Gatot Subroto Kav. 12 Kuningan Barat South Jakarta DKI Jakarta 12710</p>
+                <p>Jl. Ganesa no. 10 Bandung</p>
             </div>
         </div>
     </footer>
-    
-</body>
-<script src="./profile.js"></script>
+  </body>
+  <script src="./home.js"></script>
 </html>

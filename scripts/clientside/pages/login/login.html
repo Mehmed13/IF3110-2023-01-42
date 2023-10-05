@@ -5,8 +5,8 @@
     <link rel="icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <title>Register</title>
-    <link rel="stylesheet" href="./register.css" />
+    <title>Login</title>
+    <link rel="stylesheet" href="./login.css" />
     <link rel="stylesheet" href="../../global.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,11 +18,11 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
       rel="stylesheet"
     />
-    <script src="./registerjs.js"></script>
+    <script src="./loginjs.js"></script>
   </head>
-  <body>
-    <div class="registerCt">
-      <section class="registerHeroSection">
+  <body onload="auth()">
+    <div class="loginCt">
+      <section class="loginHeroSection">
         <img
           class="womanHero"
           src="../../assets/login-woman.png"
@@ -30,43 +30,16 @@
         />
         <img class="bgHero" src="../../assets/login-bg.png" alt="Bg Hero" />
       </section>
-      <section class="registerFormSection">
-        <h1 class="registerHeader">Create an account</h1>
-        <div class="registerFormContainer">
-          <form>
-            <div class="textInput">
-              <label>first name</label>
-              <input
-                class="transition-all"
-                placeholder="input first name"
-                id="firstName"
-                type="text"
-              />
-            </div>
-            <div class="textInput">
-              <label>last name</label>
-              <input
-                class="transition-all"
-                placeholder="input last name"
-                id="lastName"
-                type="text"
-              />
-            </div>
+      <section class="loginFormSection">
+        <h1 class="loginHeader">Login</h1>
+        <div class="loginFormContainer">
+          <form method="POST">
             <div class="textInput">
               <label>username</label>
               <input
                 class="transition-all"
                 placeholder="input username"
                 id="username"
-                type="text"
-              />
-            </div>
-            <div class="textInput">
-              <label>email</label>
-              <input
-                class="transition-all"
-                placeholder="input email"
-                id="email"
                 type="text"
               />
             </div>
@@ -84,11 +57,14 @@
             <button
               type="submit"
               class="submitButton transition-all"
-              onclick="test()"
+              onclick="login()"
             >
-              Register
+              Login
             </button>
-            <p>sudah punya akun? <a href="../../index.html">Login</a></p>
+            <p>
+              belum punya akun?
+              <a href="./pages/register/register.html">Register</a>
+            </p>
           </div>
         </div>
       </section>
