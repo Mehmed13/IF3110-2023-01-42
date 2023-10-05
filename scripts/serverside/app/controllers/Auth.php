@@ -6,6 +6,8 @@ class Auth extends Controller
     public function __construct()
     {
         $this->model = $this->getModel("User");
+        require_once __DIR__ . '/../applications/response.php';
+        require_once __DIR__ . '/../constants/response.php';
     }
     public function login()
     {
@@ -46,12 +48,16 @@ class Auth extends Controller
         json_response_success("success");
     }
 
-    public function isLoggedIn()
+    public function info()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SESSION["user"])) {
-            json_response_success($_SESSION["user"]);
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            if (isset($_SESSION["user"])) {
+                json_response_success($_SESSION["user"]);
+            } else {
+                json_response_fail(NOT_LOGGED_IN);
+            }
         } else {
-            json_response_fail(NOT_LOGGED_IN);
+            json_response_fail(WRONG_API_CALL);
         }
     }
 }
