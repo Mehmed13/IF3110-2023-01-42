@@ -14,15 +14,18 @@ courseData = [
 
 var parentDiv = document.getElementById("course");
 courseData.map(el => (
-    parentDiv.insertAdjacentHTML("beforeend", `<div class="course">
-    <img 
-    src="../../../../assets/module-profile.png" 
-    alt="module profile icon"
-    id="module-profile"
-    />
-    <div class="content">
-        <h2>${el.title}</h2>
-        <p>${el.desc}</p>
-    </div>
-    </div>`)
+    parentDiv.insertAdjacentHTML("beforeend", `
+    <a href="" class="course-link">
+        <div class="course">
+            <img 
+            src="../../../../assets/module-profile.png" 
+            alt="module profile icon"
+            id="module-profile"
+            />
+            <div class="content">
+                <h2>${el.title}</h2>
+                <p>${el.desc}</p>
+            </div>
+        </div>
+    </a>`)
 ))
