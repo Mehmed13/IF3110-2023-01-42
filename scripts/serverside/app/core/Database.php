@@ -19,11 +19,11 @@ class Database
             $this->conn = new PDO($dsn, DB_USERNAME, DB_PASSWORD, $option);
             // Set the PDO error mode to exception
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
     }
-        
+
     public function startTransaction()
     {
         try {
