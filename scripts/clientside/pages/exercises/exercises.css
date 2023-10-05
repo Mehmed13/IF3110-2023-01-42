@@ -130,6 +130,19 @@ main{
     padding: 3%;
 }
 
+.exercise:hover{
+    scale: 110%;
+}
+
+.exercise:active{
+    background-color: rgb(229, 235, 240);
+}
+
+.exercise-link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 /*FOOTER*/
 
 footer{
