@@ -48,7 +48,7 @@ function loadProfile(profileData){
   profileLastName.value =  profileData["nama_belakang"];
   profileUsername.value = profileData["username"];
   profileEmail.value = profileData["email"];
-  profilePassword.value = '*'.repeat(profileData["password"].length);
+  profilePassword.value = profileData["password"];
 }
 
 
@@ -75,7 +75,6 @@ function getProfile(){
 
 function editProfile(){
     let xhttp = new XMLHttpRequest();
-    console.log("MAsukk");
     xhttp.onreadystatechange = function(){
         if(this.readyState==4 && this.status==200){
             let profileData;
@@ -97,7 +96,7 @@ function editProfile(){
         "nama_belakang": profileLastName.value,
         "email": profileEmail.value,
         "password": profilePassword.value,
-        "profile_pict": profileImage.src,
+        "profile_pict": profileImage.src.match(/\/([^\/?#]+)$/)[1],
         "username": profileUsername.value        
     }
     ; // akan disesuaikan lagi, apakah akan disesuaikan lagi portnya?

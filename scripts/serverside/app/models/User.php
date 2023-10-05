@@ -23,7 +23,8 @@ class User
     }
 
     public function editProfile($ID_Pengguna, $nama_depan, $nama_belakang, $username, $email, $password, $profile_pict){
-        $this->db->query("UPDATE " . $this->table . " SET nama_depan = :nama_depan, nama_belakang = :nama_belakang, username = :username
+        $this->db->startTransaction();
+        $this->db->query("UPDATE " . $this->table . " SET nama_depan = :nama_depan, nama_belakang = :nama_belakang, username = :username,
             email = :email, password = :password, profile_pict = :profile_pict WHERE ID_Pengguna = :ID_Pengguna" );
 
         $this->db->bindParam(':ID_Pengguna', $ID_Pengguna);
@@ -33,8 +34,11 @@ class User
         $this->db->bindParam(':email', $email);
         $this->db->bindParam(':password', $password);
         $this->db->bindParam(':profile_pict', $profile_pict);
+        // echo $ID_Pengguna, $nama_depan, $nama_belakang, $username, $email, $password, $profile_pict ;
         try {
+            
             $this->db->execute();
+            $this->db->commit();
             return true;
         } catch (PDOException $e) {
             return  false;

@@ -36,7 +36,8 @@ class Database
     public function commit()
     {
         try {
-            $this->conn->beginTransaction();
+            // $this->conn->beginTransaction();
+            $this->conn->commit();
         } catch (PDOException $e) {
             return $this->conn->commit();
         }
