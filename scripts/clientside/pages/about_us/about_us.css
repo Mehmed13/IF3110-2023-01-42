@@ -37,10 +37,10 @@ main{
     background-color: #FDF8EE;
     padding: 2%;
     border-radius: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Add shadow */ 
 }
 
 .developer:hover{
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Add shadow */ 
     scale: 105%;  
 }
 

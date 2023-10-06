@@ -14,6 +14,7 @@ main{
     padding: 1% 5% 3%;
     border-radius: 20px;
     color: #4D2C5E;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Add shadow */ 
 }
 
 .profileContainer{
@@ -35,7 +36,7 @@ main{
     display: inline-flex;
     padding: 0.2em;
     height: 2em;
-  }
+}
 
 .picture label{
     cursor: pointer;
@@ -53,7 +54,7 @@ main{
     align-items: center;
     transition: background-color 0.2s ease-in-out;
     margin-bottom: 0;
-
+    
 }
 
 .picture img{
