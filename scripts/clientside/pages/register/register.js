@@ -3,8 +3,8 @@ function auth() {
 
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      const session = JSON.parse(this.responseText).data;
-      if (session["username"] != undefined) {
+      const session = JSON.parse(this.responseText);
+      if (session["status"]) {
         window.location = "http://localhost:8080/pages/home/home.html";
       }
     }
@@ -13,7 +13,7 @@ function auth() {
   xhttp.open("GET", "http://localhost:8000/api/auth/info", true);
   xhttp.setRequestHeader("Accept", "application/json");
   xhttp.setRequestHeader("Content-Type", "application/json");
-  xhttp.withCredentials = false;
+  xhttp.withCredentials = true;
   xhttp.send();
 }
 
