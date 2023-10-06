@@ -6,18 +6,18 @@ function login(event) {
     if (this.readyState == 4 && this.status == 200) {
       const res = JSON.parse(this.responseText);
       if (res.status) {
-        showMessage(true, "Login successful");
+        alertNotification(true, "Login successful");
         setTimeout(() => {
           window.location = "http://localhost:8080/pages/home/home.html";
         }, 1000);
       } else if (res.data === "account_not_found") {
-        showMessage(false, "Account not found");
+        alertNotification(false, "Account not found");
       } else if (res.data === "wrong_password") {
-        showMessage(false, "Wrong password");
+        alertNotification(false, "Wrong password");
       } else if (res.data === "already_login") {
-        showMessage(false, "Already login");
+        alertNotification(false, "Already login");
       } else {
-        showMessage(false, "Unknown error");
+        alertNotification(false, "Unknown error");
         console.log("res", res);
       }
     }

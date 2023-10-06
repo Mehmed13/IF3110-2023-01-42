@@ -1,4 +1,4 @@
-function showMessage(status, message) {
+function alertNotification(status, message) {
   const body = document.body;
 
   const alertElement = document.createElement("div");
