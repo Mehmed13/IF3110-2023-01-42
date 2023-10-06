@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="theme-color" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Course Admin</title>
+        <link rel="stylesheet" href="./material_admin.css" />
+        <link rel="stylesheet" href="../../style.css" />
+        <link rel="stylesheet" href="../../navbar.css" />
+        <link rel="stylesheet" href="../../footer.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&display=swap"
+        rel="stylesheet"
+        />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+        rel="stylesheet"
+        />
+    </head>
+    <body>
+        <header>
+            <section class="navbar searchBox">
+                <img 
+                src="../../assets/Lup.png" 
+                alt="Lup icon"
+                id="lup"
+            />
+            <input 
+                type="text" 
+                class="searchInput" 
+                placeholder="What do you want to learn?" 
+            />
+            <img 
+                src="../../../../assets/Filter.png" 
+                alt="Filter icon"
+                id="filter"
+            />
+            </section>
+
+            <section class="navbar features">
+                <ul>
+                    <li><a href="../home/home.html">Home</a></li>
+                    <li><a href="../about_us/about_us.html">About</a></li>
+                    <li><a href="../courses/course.html">Course</a></li>
+                    <li><a href="../exercises/exercises.html">Exercise</a></li>
+                    <li id="profileButton">
+                        <img 
+                            src="../../assets/albert.jpg" 
+                            alt="profile picture"
+                            id="profileIcon"
+                        />
+                    </li>
+                  </ul>
+            </section>
+        </header>
+
+        <main>
+            <section class="pageLabel">
+                <h2>Material Admin</h2>
+            </section>
+            <div class="material">
+
+            </div>
+            <div class="addMaterial">
+                <button>
+                    <h3>Add material</h3>
+                </button>
+            </div>
+
+            <div class="editVideoContainer">
+                <div class="editVideoTitle">
+                    <h3>Edit Video</h3>
+                </div>
+                <div class="editVideo">
+                    <div class="video">
+
+                    </div>
+                    <div class="editVideoButtons">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="editTextContainer">
+                <div class="editTextTitle">
+                    <h3>Edit Material Text</h3>
+                </div>
+                <div class="editText">
+                    <input type="textArea">
+                    <div class="editTextButtons">
+
+                    </div>  
+                </div>
+            </div>
+
+            <div class="editExerciseContainer">
+                <img 
+                src="../../../../assets/module-profile.png" 
+                alt="exercise profile icon"
+                id="exercise-profile"
+                />
+                <div class="content">
+                    <h2>Exercise 1</h2>
+                    <p>lorem</p>
+                    <button>
+                        <h3>Edit</h3>
+                    </button>
+                    <button id="delete">
+                        <h3>Delete</h3>
+                    </button>
+                </div>
+            </div>
+            
+        </main>
+
+        <footer>
+            <div class="head">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contacts">
+                <div class="contact">
+                    <img 
+                        src="../../../../assets/fbicon.png" 
+                        alt="facebook icon"
+                    />
+                    <p>studyDojo</p>
+                </div>
+                <div class="contact">
+                    <img 
+                        src="../../../../assets/waicon.png" 
+                        alt="whatsapp icon"
+                    />
+                    <p>+6289587123114</p>
+                </div>
+                <div class="contact">
+                    <img 
+                        src="../../../../assets/igicon.png"   
+                        alt="instagram icon"
+                    />
+                    <p>study.Dojo</p>
+                </div>
+                <div class="contact">
+                    <img 
+                        src="../../../../assets/yticon.png" 
+                        alt="youtube icon"
+                    />
+                    <p>Dojo Study</p>
+                </div>
+                <div class="contact">
+                    <img 
+                        src="../../../../assets/locicon.png" 
+                        alt="location icon"
+                    />
+                    <p>Jl. Ganesa no. 10 Bandung</p>
+                </div>
+            </div>
+        </footer>
+    </body>
+    <script src="../../navbar.js"></script>
+    <script src="./material_admin.js"></script>
+</html>
