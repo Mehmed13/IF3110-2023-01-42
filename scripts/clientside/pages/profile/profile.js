@@ -36,14 +36,13 @@ profileNotFound=[{
 let ID_Pengguna = 2;
 
 function loadFile(event) {
-    profileImage.src = URL.createObjectURL(event.target.files[0]);
-    profileIcon.src = URL.createObjectURL(event.target.files[0]);
+    profileImage.src = profilePictureURL + event.target.files[0]['name'];
+    profileIcon.src = profilePictureURL + event.target.files[0]['name'];
 };
 
 function loadProfile(profileData){
   profileIcon.src = profilePictureURL + profileData["profile_pict"];
   profileImage.src = profilePictureURL + profileData["profile_pict"];
-//   console.log(profileData["nama_depan"]);
   profileFirstName.value =  profileData["nama_depan"];
   profileLastName.value =  profileData["nama_belakang"];
   profileUsername.value = profileData["username"];
@@ -100,6 +99,7 @@ function editProfile(){
         "username": profileUsername.value        
     }
     ; // akan disesuaikan lagi, apakah akan disesuaikan lagi portnya?
+    console.log(profileImage.src);
     xhttp.open("POST","http://localhost:8000/api/userapi/editprofile",true);
     xhttp.setRequestHeader("Accept", "application/json");
     xhttp.setRequestHeader("Content-Type", "application/json");
