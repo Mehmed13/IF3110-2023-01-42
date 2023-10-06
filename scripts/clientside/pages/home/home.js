@@ -93,7 +93,7 @@ let current_course_page = 1;
 let current_exercise_page = 1;
 let rows = 3;
 
-function loadpage() {
+function loadPage() {
   generateNavbar();
   generateFooter();
 }
