@@ -8,7 +8,6 @@
     <title>Home</title>
     <link rel="stylesheet" href="./home.css" />
     <link rel="stylesheet" href="../../style.css" />
-    <link rel="stylesheet" href="../../navbar.css" />
     <link rel="stylesheet" href="../../footer.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,124 +19,68 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
       rel="stylesheet"
     />
-  </head>
-  <body>
-    <header>
-        <section class="navbar searchBox">
-            <img 
-                src="../../assets/Lup.png" 
-                alt="Lup icon"
-                id="lup"
-            />
-            <input 
-                type="text" 
-                class="searchInput" 
-                placeholder="What do you want to learn?" 
-            />
 
-            <img 
-                src="../../assets/Filter.png" 
-                alt="Filter icon"
-                id="filter"
-            />
-        </section>
-        <section class="navbar features">
-            <ul>
-                <li><a href="./home.html">Home</a></li>
-                <li><a href="../about_us/about_us.html">About</a></li>
-                <li><a href="../courses/course.html">Course</a></li>
-                <li><a href="../exercises/exercises.html">Exercise</a></li>
-                <li id="profileButton">
-                    <img 
-                        src="../../assets/albert.jpg" 
-                        alt="profile picture"
-                        id="profileIcon"
-                    />
-                </li>
-              </ul>
-        </section>
-    </header>
+    <script src="../../components/navbar/navbar.js"></script>
+    <link rel="stylesheet" href="../../components/navbar/navbar.css" />
+  </head>
+  <body onload="generateNavbar()">
+    <header id="header"></header>
 
     <main>
-        <section class="course">
-            <div class="courseContainer">
-                <div class="courseLabel">
-                    <h2>Course</h2>
-                </div>
-                <div class="courseContents">
-                </div>
-                <div class="pagenumbers coursePage" id="coursePagination">
-                    
-                </div>
-            </div>
-            <div class="bgBoy">
-                <img src="../../assets/bgboy.png" alt="boy is learning">
-            </div>
-        </section>
-        
-        <section class="exercise">
-            <div class="bgGirl">
-                <img src="../../assets/bggirl.png" alt="girl is learning">
-            </div>
-            <div class="exerciseContainer">
-                <div class="exerciseLabel">
-                    <h2>Exercise</h2>
-                </div>
-                <div class="exerciseContents">
-                    
-                </div>
-                <div class="pagenumbers exercisePage" id="exercisePagination">
-                    
-                </div>
+      <section class="course">
+        <div class="courseContainer">
+          <div class="courseLabel">
+            <h2>Course</h2>
+          </div>
+          <div class="courseContents"></div>
+          <div class="pagenumbers coursePage" id="coursePagination"></div>
+        </div>
+        <div class="bgBoy">
+          <img src="../../assets/bgboy.png" alt="boy is learning" />
+        </div>
+      </section>
 
-            </div>
-
-        </section>
+      <section class="exercise">
+        <div class="bgGirl">
+          <img src="../../assets/bggirl.png" alt="girl is learning" />
+        </div>
+        <div class="exerciseContainer">
+          <div class="exerciseLabel">
+            <h2>Exercise</h2>
+          </div>
+          <div class="exerciseContents"></div>
+          <div class="pagenumbers exercisePage" id="exercisePagination"></div>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="head">
-            <h2>Contact Us</h2>
+      <div class="head">
+        <h2>Contact Us</h2>
+      </div>
+      <div class="contacts">
+        <div class="contact">
+          <img src="../../assets/fbicon.png" alt="facebook icon" />
+          <p>studyDojo</p>
         </div>
-        <div class="contacts">
-            <div class="contact">
-                <img 
-                    src="../../assets/fbicon.png" 
-                    alt="facebook icon"
-                />
-                <p>studyDojo</p>
-            </div>
-            <div class="contact">
-                <img 
-                    src="../../assets/waicon.png" 
-                    alt="whatsapp icon"
-                />
-                <p>+6289587123114</p>
-            </div>
-            <div class="contact">
-                <img 
-                    src="../../assets/igicon.png"   
-                    alt="instagram icon"
-                />
-                <p>study.Dojo</p>
-            </div>
-            <div class="contact">
-                <img 
-                    src="../../assets/yticon.png" 
-                    alt="youtube icon"
-                />
-                <p>Dojo Study</p>
-            </div>
-            <div class="contact">
-                <img 
-                    src="../../assets/locicon.png" 
-                    alt="location icon"
-                />
-                <p>Jl. Ganesa no. 10 Bandung</p>
-            </div>
+        <div class="contact">
+          <img src="../../assets/waicon.png" alt="whatsapp icon" />
+          <p>+6289587123114</p>
         </div>
+        <div class="contact">
+          <img src="../../assets/igicon.png" alt="instagram icon" />
+          <p>study.Dojo</p>
+        </div>
+        <div class="contact">
+          <img src="../../assets/yticon.png" alt="youtube icon" />
+          <p>Dojo Study</p>
+        </div>
+        <div class="contact">
+          <img src="../../assets/locicon.png" alt="location icon" />
+          <p>Jl. Ganesa no. 10 Bandung</p>
+        </div>
+      </div>
     </footer>
   </body>
-  <script src="../../navbar.js"></script>
   <script src="./home.js"></script>
 </html>
