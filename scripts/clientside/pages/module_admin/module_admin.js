@@ -1,14 +1,14 @@
 moduleData = [
-    {title: "Module 1"},
-    {title: "Module 2"},
-    {title: "Module 3"}
-]
-
-
+  { title: "Module 1" },
+  { title: "Module 2" },
+  { title: "Module 3" },
+];
 
 var parentDiv = document.getElementsByClassName("module")[0];
-moduleData.map(el => (
-    parentDiv.insertAdjacentHTML("beforeend", `
+moduleData.map((el) =>
+  parentDiv.insertAdjacentHTML(
+    "beforeend",
+    `
     <div class="content">
         <div class="contentTitle">
             <h2>${el.title}</h2>
@@ -24,5 +24,10 @@ moduleData.map(el => (
         </div>
     </div>
         `
-    )
-))  
+  )
+);
+
+function loadPage() {
+  generateNavbar();
+  generateFooter();
+}
