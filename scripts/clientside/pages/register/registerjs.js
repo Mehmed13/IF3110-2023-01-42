@@ -13,11 +13,12 @@ function auth() {
   xhttp.open("GET", "http://localhost:8000/api/auth/info", true);
   xhttp.setRequestHeader("Accept", "application/json");
   xhttp.setRequestHeader("Content-Type", "application/json");
-  xhttp.withCredentials = true;
+  xhttp.withCredentials = false;
   xhttp.send();
 }
 
-function register() {
+function register(event) {
+  event.preventDefault();
   const data = {
     nama_depan: document.getElementById("nama_depan").value,
     nama_belakang: document.getElementById("nama_belakang").value,
@@ -29,22 +30,34 @@ function register() {
 
   if (!checkField(data)) {
     showMessage(false, "Incomplete form");
+  } else if (!checkEmail(data.email)) {
+    showMessage(false, "Email not valid");
   } else if (!checkPassword(data.password, data.confirm_password)) {
     showMessage(false, "Password doesn't match");
   } else {
-    showMessage(true, "Account registered succecfully");
-    registerUserToBackend();
+    registerUserToBackend(event);
   }
 }
 
-function registerUserToBackend() {
+function registerUserToBackend(event) {
+  event.preventDefault();
+
   const xhttp = new XMLHttpRequest();
 
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      const resStatus = JSON.parse(this.responseText).status;
-      if (resStatus) {
-        window.location = "http://localhost:8080/pages/login/login.html";
+      const res = JSON.parse(this.responseText);
+      if (res.status) {
+        showMessage(true, "Account registered successfully");
+        setTimeout(() => {
+          window.location = "http://localhost:8080/pages/login/login.html";
+        }, 1000);
+      } else if (res.data === "username_registered") {
+        showMessage(false, "Username already taken");
+      } else if (res.data === "email_registered") {
+        showMessage(false, "Email already taken");
+      } else {
+        showMessage(false, "Unknown error");
       }
     }
   };
@@ -82,32 +95,7 @@ function checkField(data) {
   return true;
 }
 
-function showMessage(status, message) {
-  const body = document.body;
-
-  const alertElement = document.createElement("div");
-  alertElement.className = "alert-notification slide-in";
-
-  const alertImg = document.createElement("img");
-  if (status) {
-    alertImg.src = "../../assets/alert_success.png";
-    alertImg.alt = "fail";
-  } else {
-    alertImg.src = "../../assets/alert_fail.png";
-    alertImg.alt = "success";
-  }
-  const alertText = document.createElement("p");
-  alertText.innerHTML = message;
-
-  alertElement.appendChild(alertImg);
-  alertElement.appendChild(alertText);
-
-  body.appendChild(alertElement);
-
-  setTimeout(() => {
-    alertElement.classList.add("slide-out");
-    setTimeout(() => {
-      alertElement.remove();
-    }, 200);
-  }, 3000);
+function checkEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 }

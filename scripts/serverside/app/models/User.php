@@ -31,12 +31,12 @@ class User
         $row = $this->db->getResult();
         if ($row) {
             if ($password == $row['password']) {
-                return $row;
+                return array(true, $row);
             } else {
-                return false;
+                return array(false, WRONG_PASSWORD);
             }
         } else {
-            return false;
+            return array(false, ACCOUNT_NOT_FOUND);
         }
     }
 

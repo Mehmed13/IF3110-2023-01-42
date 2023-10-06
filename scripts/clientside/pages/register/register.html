@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <title>Register</title>
     <link rel="stylesheet" href="./register.css" />
-    <link rel="stylesheet" href="../../global.css" />
+    <link rel="stylesheet" href="../../style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,6 +19,7 @@
       rel="stylesheet"
     />
     <script src="./registerjs.js"></script>
+    <script src="../../utils.js"></script>
   </head>
   <body onload="auth()">
     <div class="registerCt">
@@ -33,7 +34,7 @@
       <section class="registerFormSection">
         <h1 class="registerHeader">Create an account</h1>
         <div class="registerFormContainer">
-          <form method="POST">
+          <form method="POST" onsubmit="register(event)">
             <div class="textInput">
               <label>first name</label>
               <input
@@ -95,7 +96,7 @@
               />
             </div>
             <div class="submitButtonCt">
-              <button class="submitButton transition-all" onclick="register()">
+              <button class="submitButton transition-all" type="submit">
                 Register
               </button>
               <p>sudah punya akun? <a href="../login/login.html">Login</a></p>
