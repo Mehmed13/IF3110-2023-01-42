@@ -41,6 +41,7 @@
                 placeholder="input first name"
                 id="nama_depan"
                 type="text"
+                required
               />
             </div>
             <div class="textInput">
@@ -50,6 +51,7 @@
                 placeholder="input last name"
                 id="nama_belakang"
                 type="text"
+                required
               />
             </div>
             <div class="textInput">
@@ -59,6 +61,7 @@
                 placeholder="input username"
                 id="username"
                 type="text"
+                required
               />
             </div>
             <div class="textInput">
@@ -68,6 +71,7 @@
                 placeholder="input email"
                 id="email"
                 type="text"
+                required
               />
             </div>
             <div class="textInput">
@@ -77,19 +81,26 @@
                 placeholder="input password"
                 id="password"
                 type="password"
+                required
               />
             </div>
+            <div class="textInput">
+              <label>confirm password</label>
+              <input
+                class="transition-all"
+                placeholder="input password"
+                id="confirm_password"
+                type="password"
+                required
+              />
+            </div>
+            <div class="submitButtonCt">
+              <button class="submitButton transition-all" onclick="register()">
+                Register
+              </button>
+              <p>sudah punya akun? <a href="../login/login.html">Login</a></p>
+            </div>
           </form>
-          <div class="submitButtonCt">
-            <button
-              type="submit"
-              class="submitButton transition-all"
-              onclick="register()"
-            >
-              Register
-            </button>
-            <p>sudah punya akun? <a href="../login/login.html">Login</a></p>
-          </div>
         </div>
       </section>
     </div>

@@ -41,6 +41,7 @@
                 placeholder="input username"
                 id="username"
                 type="text"
+                required
               />
             </div>
             <div class="textInput">
@@ -50,22 +51,23 @@
                 placeholder="input password"
                 id="password"
                 type="password"
+                required
               />
             </div>
+            <div class="submitButtonCt">
+              <button
+                type="submit"
+                class="submitButton transition-all"
+                onclick="login()"
+              >
+                Login
+              </button>
+              <p>
+                belum punya akun?
+                <a href="../register/register.html">Register</a>
+              </p>
+            </div>
           </form>
-          <div class="submitButtonCt">
-            <button
-              type="submit"
-              class="submitButton transition-all"
-              onclick="login()"
-            >
-              Login
-            </button>
-            <p>
-              belum punya akun?
-              <a href="../register/register.html">Register</a>
-            </p>
-          </div>
         </div>
       </section>
     </div>
