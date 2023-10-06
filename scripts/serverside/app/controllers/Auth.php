@@ -21,7 +21,7 @@ class Auth extends Controller
                 return;
             }
             $res = $this->model->login($_POST['username'], $_POST['password']);
-            if ($res) {
+            if ($res[0]) {
                 $data = array('username' => $res['username'], "email" => $res['email']);
                 $_SESSION["user"] = array(
                     'ID_Pengguna' => $res['ID_Pengguna'],
@@ -35,7 +35,7 @@ class Auth extends Controller
                 );
                 json_response_success($data);
             } else {
-                json_response_fail(ACCOUNT_NOT_FOUND);
+                json_response_fail($res[1]);
             }
         } else {
             json_response_fail(METHOD_NOT_ALLOWED);
