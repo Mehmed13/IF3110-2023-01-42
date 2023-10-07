@@ -11,6 +11,8 @@ let profileEmail = document.getElementById("profileEmail");
 let profilePassword = document.getElementById("profilePassword");
 let saveChangesButton = document.querySelector(".saveButton .button");
 
+let ID_Pengguna = 0;
+
 profileImage.onerror = function () {
   setDefaultImg("profileImage");
 };
@@ -30,6 +32,7 @@ function loadPage() {
 
 function loadFile(event) {
   profileImage.src = BASE_PROFILE_PICTURE_PATH + event.target.files[0]["name"];
+  console.log("nama file", event.target.files[0]);
 }
 
 function loadProfile(profileData) {
@@ -39,25 +42,11 @@ function loadProfile(profileData) {
   profileUsername.value = profileData["username"];
   profileEmail.value = profileData["email"];
   profilePassword.value = "";
+  ID_Pengguna = profileData["ID_Pengguna"];
 }
 
 function editProfile() {
-  let xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      let profileData;
-      console.log(this.responseText);
-      let profileFile = JSON.parse(this.responseText);
-      console.log(profileFile);
-      if (profileFile["status"]) {
-        profileData = profileFile["data"];
-      } else {
-        profileData = profileNotFound;
-      }
-    }
-  };
-
-  let data = {
+  const data = {
     ID_Pengguna: ID_Pengguna,
     nama_depan: profileFirstName.value,
     nama_belakang: profileLastName.value,
@@ -65,13 +54,44 @@ function editProfile() {
     password: profilePassword.value,
     profile_pict: profileImage.src.match(/\/([^\/?#]+)$/)[1],
     username: profileUsername.value,
-  }; // akan disesuaikan lagi, apakah akan disesuaikan lagi portnya?
-  console.log(profileImage.src);
+  };
+
+  if (!checkEmail(data.email)) {
+    alertNotification(false, "Email not valid");
+  } else if (data.password == "") {
+    alertNotification(false, "Password cannot be blank");
+  } else {
+    editProfileToBackend(data);
+  }
+}
+
+function editProfileToBackend(data) {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const res = JSON.parse(this.responseText);
+      if (res.status && res.data) {
+        alertNotification(true, "Changes saved successfully");
+      } else if (res.data === "username_registered") {
+        alertNotification(false, "Username already exists");
+      } else if (res.data === "email_registered") {
+        alertNotification(false, "Email already exists");
+      } else {
+        alertNotification(false, "Unknown error");
+      }
+    }
+  };
+
   xhttp.open("POST", "http://localhost:8000/api/userapi/editprofile", true);
   xhttp.setRequestHeader("Accept", "application/json");
   xhttp.setRequestHeader("Content-Type", "application/json");
   xhttp.withCredentials = true;
   xhttp.send(JSON.stringify(data));
+}
+
+function checkEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 }
 
 inputFile.addEventListener("change", loadFile);

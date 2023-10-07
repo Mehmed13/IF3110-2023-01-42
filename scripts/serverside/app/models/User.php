@@ -23,10 +23,11 @@ class User
         }
     }
 
-    public function editProfile($ID_Pengguna, $nama_depan, $nama_belakang, $username, $email, $password, $profile_pict){
+    public function editProfile($ID_Pengguna, $nama_depan, $nama_belakang, $username, $email, $password, $profile_pict)
+    {
         $this->db->startTransaction();
         $this->db->query("UPDATE " . $this->table . " SET nama_depan = :nama_depan, nama_belakang = :nama_belakang, username = :username,
-            email = :email, password = :password, profile_pict = :profile_pict WHERE ID_Pengguna = :ID_Pengguna" );
+            email = :email, password = :password, profile_pict = :profile_pict WHERE ID_Pengguna = :ID_Pengguna");
 
         $this->db->bindParam(':ID_Pengguna', $ID_Pengguna);
         $this->db->bindParam(':nama_depan', $nama_depan);
@@ -37,7 +38,7 @@ class User
         $this->db->bindParam(':profile_pict', $profile_pict);
         // echo $ID_Pengguna, $nama_depan, $nama_belakang, $username, $email, $password, $profile_pict ;
         try {
-            
+
             $this->db->execute();
             $this->db->commit();
             return true;
@@ -116,6 +117,46 @@ class User
             $row = $this->db->getResult();
             if ($row) {
                 return false;
+            }
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function checkEmailAvailability($id, $email)
+    {
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE email = :data');
+        $this->db->bindParam(':data', $email);
+        try {
+            $this->db->execute();
+            $row = $this->db->getResult();
+            if ($row) {
+                if ($id == $row['ID_Pengguna']) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function checkUsernameAvailability($id, $username)
+    {
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE username = :data');
+        $this->db->bindParam(':data', $username);
+        try {
+            $this->db->execute();
+            $row = $this->db->getResult();
+            if ($row) {
+                if ($id == $row['ID_Pengguna']) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
             return true;
         } catch (\Throwable $th) {
