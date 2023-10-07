@@ -34,7 +34,7 @@ exerciseData.map((el) =>
   )
 );
 
-function loadpage() {
+function loadPage() {
   generateNavbar();
   generateFooter();
 }

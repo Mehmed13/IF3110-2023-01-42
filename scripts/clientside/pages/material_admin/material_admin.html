@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="theme-color" content="#000000" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Material Admin</title>
+        <link rel="stylesheet" href="./material_admin.css" />
+        <link rel="stylesheet" href="../../style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&display=swap"
+        rel="stylesheet"
+        />
+        <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+        rel="stylesheet"
+        />
+        
+        <script src="../../components/navbar/navbar.js"></script>
+        <link rel="stylesheet" href="../../components/navbar/navbar.css" />
+
+        <script src="../../components/footer/footer.js"></script>
+        <link rel="stylesheet" href="../../components/footer/footer.css" />
+    </head>
+    <body onload="loadPage()">
+        <header id="header"></header>
+        <main>
+            <section class="pageLabel">
+                <h2>Material Admin</h2>
+            </section>
+            <div class="material">
+
+            </div>
+            <div class="addMaterial">
+                <button>
+                    <h3>Add material</h3>
+                </button>
+            </div>
+
+            <div class="editVideoContainer">
+                <div class="editVideoTitle">
+                    <h3>Edit video</h3>
+                </div>
+                <div class="editVideo">
+                    <div class="video">
+                        <video src="../../Data/materiVideo/take me home.mp4"
+                        controls="true"
+                        ></video>
+                    </div>
+
+                    <div class="videoModification">
+                        <div class="videoSelector">
+                            <label for="videoInput">Choose a video</label>
+                            <input type="file" id="videoInput" accept="video/*">
+                        </div>
+                        <div class="editVideoButtons">
+                            <button onclick="uploadVideo()">
+                                <h3>Upload</h3>
+                            </button>
+                            <button id="delete">
+                                <h3>Delete</h3>  
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="editTextContainer">
+                <div class="editTextTitle">
+                    <h3>Edit material text</h3>
+                </div>
+                <div class="editText">
+                    <textarea name="text material">
+
+                    </textarea>
+                    <div class="editTextButtons">
+
+                    </div>  
+                </div>
+            </div>
+
+            <div class="editExerciseContainer">
+                <div class="editExerciseTitle">
+                    <h3>Edit exercise</h3>
+                </div>
+                <div class="exercise">
+                    <img 
+                    src="../../../../assets/module-profile.png" 
+                    alt="exercise profile icon"
+                    id="exercise-profile"
+                    />
+
+                    <div class="exerciseContent">
+                        <div class="exerciseTitle">
+                            <h3>Exercise 1</h3>
+                        </div>
+                        <p>lorem</p>
+                        <div class="exerciseButtons">   
+                            <button>
+                                <h3>Edit</h3>
+                            </button>
+                            <button id="delete">
+                                <h3>Delete</h3>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+
+        <footer id="footer">
+        </footer>
+    </body>
+    <script src="./material_admin.js"></script>
+</html>

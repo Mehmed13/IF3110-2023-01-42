@@ -43,11 +43,9 @@ function loadPage() {
 
 function loadFile(event) {
   profileImage.src = profilePictureURL + event.target.files[0]["name"];
-  profileIcon.src = profilePictureURL + event.target.files[0]["name"];
 }
 
 function loadProfile(profileData) {
-  profileIcon.src = profilePictureURL + profileData["profile_pict"];
   profileImage.src = profilePictureURL + profileData["profile_pict"];
   profileFirstName.value = profileData["nama_depan"];
   profileLastName.value = profileData["nama_belakang"];
