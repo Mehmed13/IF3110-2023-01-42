@@ -1,8 +1,8 @@
 <?php
 
-class Exercise
+class Course
 {
-    private $table = 'Latihan_Soal';
+    private $table = 'Mata_Pelajaran';
     private $db;
 
     public function __construct()
@@ -11,7 +11,7 @@ class Exercise
         $this->db = new Database();
     }
     
-    public function getAllExercise(){
+    public function getAllCourse(){
         $this->db->query("SELECT * FROM " . $this->table);
         try {
             $this->db->execute();
@@ -21,7 +21,7 @@ class Exercise
         }
     }
     public function getPage($pageNumber, $rows_per_page){
-        $res = $this->getAllExercise();
+        $res = $this->getAllCourse();
         if ($res){
             // Get slice of data
             $pageData = array_slice($res, ($pageNumber-1)*$rows_per_page, $rows_per_page);
@@ -32,8 +32,8 @@ class Exercise
         }
     }
 
-    public function getNumberOfExercise(){
-        $this->db->query("SELECT COUNT(ID_Material) AS numberOfExercise FROM " . $this->table);
+    public function getNumberOfCourse(){
+        $this->db->query("SELECT COUNT(kode_mapel) AS numberOfCourse FROM " . $this->table);
         try {
             $this->db->execute();
             return $this->db->getResult();
