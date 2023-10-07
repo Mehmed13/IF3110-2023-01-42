@@ -92,8 +92,10 @@ function generateNavbarByRoles(role, profile_pict, nama_depan) {
     const profileIcon = document.createElement("img");
     profileIcon.src = BASE_PROFILE_PICTURE_PATH + profile_pict;
     profileIcon.alt = "profile picture";
-    profileIcon.id = "profileIcon";
-    profileIcon.onerror = setDefaultImg;
+    profileIcon.id = "profileIconNavbar";
+    profileIcon.onerror = function () {
+      setDefaultImg("profileIconNavbar");
+    };
 
     profileButton.appendChild(profileIcon);
     features.appendChild(profileButton);
@@ -120,8 +122,10 @@ function showPopup(role, profile_pict, nama_depan) {
     const profileIcon = document.createElement("img");
     profileIcon.src = BASE_PROFILE_PICTURE_PATH + profile_pict;
     profileIcon.alt = "profile picture";
-    profileIcon.id = "profileIcon";
-    profileIcon.onerror = setDefaultImg;
+    profileIcon.id = "profileIconPopup";
+    profileIcon.onerror = function () {
+      setDefaultImg("profileIconPopup");
+    };
 
     const nameCt = document.createElement("div");
     nameCt.classList.add("nameCt");
@@ -217,8 +221,8 @@ function getLinksByRole(role) {
   }
 }
 
-function setDefaultImg() {
-  const img = document.getElementById("profileIcon");
+function setDefaultImg(imgId) {
+  const img = document.getElementById(imgId);
   img.src = BASE_PROFILE_PICTURE_PATH + "default.jpg";
   img.alt = "Default Image";
 }

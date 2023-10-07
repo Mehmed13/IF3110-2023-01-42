@@ -1,10 +1,15 @@
 function auth(roles, redirect) {
   getSession()
     .then((session) => {
+      let role;
       if (session["status"]) {
-        if (roles.length === 0 || !roles.includes(session["data"]["role"])) {
-          window.location = "http://localhost:8080" + redirect;
-        }
+        role = session["data"]["role"];
+      } else {
+        role = "unregistered";
+      }
+
+      if (!roles.includes(role)) {
+        window.location = "http://localhost:8080" + redirect;
       }
     })
     .catch((error) => {

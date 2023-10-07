@@ -37,6 +37,7 @@ profileNotFound = [
 let ID_Pengguna = 2;
 
 function loadPage() {
+  auth(["admin", "user"], `/pages/home/home.html`);
   generateNavbar();
   generateFooter();
 }

@@ -1,23 +1,23 @@
 courseData = [
-    {
-      title: "Course 1",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      title: "Course 2",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    {
-      title: "Course 3",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-  ];
-  
-  var parentDiv = document.getElementById("studyHistory");
-  courseData.map((el) =>
-    parentDiv.insertAdjacentHTML(
-      "beforeend",
-      `
+  {
+    title: "Course 1",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    title: "Course 2",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+  {
+    title: "Course 3",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  },
+];
+
+var parentDiv = document.getElementById("studyHistory");
+courseData.map((el) =>
+  parentDiv.insertAdjacentHTML(
+    "beforeend",
+    `
       <a href="" class="studyHistory-link">
           <div class="studyHistory">
               <img 
@@ -31,11 +31,11 @@ courseData = [
               </div>
           </div>
       </a>`
-    )
-  );
-  
-  function loadPage() {
-    generateNavbar();
-    generateFooter();
-  }
-  
+  )
+);
+
+function loadPage() {
+  auth(["admin", "user"], `/pages/home/home.html`);
+  generateNavbar();
+  generateFooter();
+}
