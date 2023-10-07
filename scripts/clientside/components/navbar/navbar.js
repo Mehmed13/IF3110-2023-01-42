@@ -32,7 +32,7 @@ function generateNavbar() {
   const ul = document.createElement("ul");
 
   const links = [
-    { href: "./home.html", text: "Home" },
+    { href: "../home/home.html", text: "Home" },
     { href: "../about_us/about_us.html", text: "About" },
     { href: "../courses/course.html", text: "Course" },
     { href: "../exercises/exercises.html", text: "Exercise" },
