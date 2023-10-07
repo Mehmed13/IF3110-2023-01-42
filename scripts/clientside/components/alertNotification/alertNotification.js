@@ -1,4 +1,4 @@
-function showMessage(status, message) {
+function alertNotification(status, message) {
   const body = document.body;
 
   const alertElement = document.createElement("div");
@@ -6,10 +6,10 @@ function showMessage(status, message) {
 
   const alertImg = document.createElement("img");
   if (status) {
-    alertImg.src = "../../assets/alert_success.png";
+    alertImg.src = "/assets/alert_success.png";
     alertImg.alt = "fail";
   } else {
-    alertImg.src = "../../assets/alert_fail.png";
+    alertImg.src = "/assets/alert_fail.png";
     alertImg.alt = "success";
   }
   const alertText = document.createElement("p");

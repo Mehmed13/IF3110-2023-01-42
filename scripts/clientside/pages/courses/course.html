@@ -1,111 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <meta name="theme-color" content="#000000" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Course</title>
-        <link rel="stylesheet" href="./course.css" />
-        <link rel="stylesheet" href="../../style.css" />
-        <link rel="stylesheet" href="../../navbar.css" />
-        <link rel="stylesheet" href="../../footer.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&display=swap"
-        rel="stylesheet"
-        />
-        <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
-        rel="stylesheet"
-        />
-    </head>
-    <body>
-        <header>
-            <section class="navbar searchBox">
-                <img 
-                src="../../../../assets/Lup.png" 
-                alt="Lup icon"
-                id="lup"
-            />
-            <input 
-                type="text" 
-                class="searchInput" 
-                placeholder="What do you want to learn?" 
-            />
-            <img 
-                src="../../../../assets/Filter.png" 
-                alt="Filter icon"
-                id="filter"
-            />
-            </section>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Course</title>
+    <link rel="stylesheet" href="./course.css" />
+    <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="../../navbar.css" />
+    <link rel="stylesheet" href="../../footer.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Jost:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;700&family=Open+Sans:wght@300&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
 
-            <section class="navbar features">
-                <ul>
-                    <li><a href="../home/home.html">Home</a></li>
-                    <li><a href="../about_us/about_us.html">About</a></li>
-                    <li><a href="./course.html">Course</a></li>
-                    <li><a href="../exercises/exercises.html">Exercise</a></li>
-                    <li id="profileButton">
-                        <img 
-                            src="../../assets/albert.jpg" 
-                            alt="profile picture"
-                            id="profileIcon"
-                        />
-                    </li>
-                  </ul>
-            </section>
-        </header>
+    <script src="../../components/navbar/navbar.js"></script>
+    <link rel="stylesheet" href="../../components/navbar/navbar.css" />
 
-        <main id="course">
-            <section class="pageLabel">
-                <h2>Study History</h2>
-            </section>
-        </main>
+    <script src="../../components/footer/footer.js"></script>
+    <link rel="stylesheet" href="../../components/footer/footer.css" />
+  </head>
+  <body onload="loadPage()">
+    <header id="header"></header>
 
-        <footer>
-            <div class="head">
-                <h2>Contact Us</h2>
-            </div>
-            <div class="contacts">
-                <div class="contact">
-                    <img 
-                        src="../../../../assets/fbicon.png" 
-                        alt="facebook icon"
-                    />
-                    <p>studyDojo</p>
-                </div>
-                <div class="contact">
-                    <img 
-                        src="../../../../assets/waicon.png" 
-                        alt="whatsapp icon"
-                    />
-                    <p>+6289587123114</p>
-                </div>
-                <div class="contact">
-                    <img 
-                        src="../../../../assets/igicon.png"   
-                        alt="instagram icon"
-                    />
-                    <p>study.Dojo</p>
-                </div>
-                <div class="contact">
-                    <img 
-                        src="../../../../assets/yticon.png" 
-                        alt="youtube icon"
-                    />
-                    <p>Dojo Study</p>
-                </div>
-                <div class="contact">
-                    <img 
-                        src="../../../../assets/locicon.png" 
-                        alt="location icon"
-                    />
-                    <p>Jl. Ganesa no. 10 Bandung</p>
-                </div>
-            </div>
-        </footer>
-    </body>
-    <script src="./course.js"></script>
-    <script src="../../navbar.js"></script>
+    <main id="course">
+      <section class="pageLabel">
+        <h2>Courses</h2>
+      </section>
+    </main>
+
+    <footer id="footer"></footer>
+  </body>
+  <script src="./course.js"></script>
 </html>

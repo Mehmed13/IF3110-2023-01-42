@@ -1,22 +1,3 @@
-function auth() {
-  const xhttp = new XMLHttpRequest();
-
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      const session = JSON.parse(this.responseText).data;
-      if (session["username"] != undefined) {
-        window.location = "http://localhost:8080/pages/home/home.html";
-      }
-    }
-  };
-
-  xhttp.open("GET", "http://localhost:8000/api/auth/info", true);
-  xhttp.setRequestHeader("Accept", "application/json");
-  xhttp.setRequestHeader("Content-Type", "application/json");
-  xhttp.withCredentials = false;
-  xhttp.send();
-}
-
 function register(event) {
   event.preventDefault();
   const data = {
@@ -29,11 +10,11 @@ function register(event) {
   };
 
   if (!checkField(data)) {
-    showMessage(false, "Incomplete form");
+    alertNotification(false, "Incomplete form");
   } else if (!checkEmail(data.email)) {
-    showMessage(false, "Email not valid");
+    alertNotification(false, "Email not valid");
   } else if (!checkPassword(data.password, data.confirm_password)) {
-    showMessage(false, "Password doesn't match");
+    alertNotification(false, "Password doesn't match");
   } else {
     registerUserToBackend(event);
   }
@@ -48,16 +29,16 @@ function registerUserToBackend(event) {
     if (this.readyState == 4 && this.status == 200) {
       const res = JSON.parse(this.responseText);
       if (res.status) {
-        showMessage(true, "Account registered successfully");
+        alertNotification(true, "Account registered successfully");
         setTimeout(() => {
           window.location = "http://localhost:8080/pages/login/login.html";
         }, 1000);
       } else if (res.data === "username_registered") {
-        showMessage(false, "Username already taken");
+        alertNotification(false, "Username already taken");
       } else if (res.data === "email_registered") {
-        showMessage(false, "Email already taken");
+        alertNotification(false, "Email already taken");
       } else {
-        showMessage(false, "Unknown error");
+        alertNotification(false, "Unknown error");
       }
     }
   };
