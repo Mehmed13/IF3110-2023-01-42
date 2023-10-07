@@ -212,3 +212,50 @@ textarea{
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
+/* Add Material*/
+
+.addMaterialForm{
+    /* display: none; */
+    padding: 2% 5% .1%;
+    border-radius: 20px;
+    color: #4D2C5E;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Add shadow */ 
+    display: none;
+    flex-direction: column;
+
+    background-color: #fff;
+    width: 80%;
+    margin: auto;
+}
+
+.addMaterialData{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+
+.addMaterialData input{
+    padding: 10px;
+    border-radius: 12px;
+    border-color: #c3c3c3;
+    border-style: solid;
+    outline: none;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    width: 80%;
+}
+
+.addMaterialForm button{
+    background-color: #4D2C5E;
+    color: #fff;
+    margin-top: 3%;
+    padding: 5px 15px;
+    border-radius: 12px;
+    border-color: #4D2C5E;
+    color: #fff;
+    border-style: solid;
+    outline: none;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+}

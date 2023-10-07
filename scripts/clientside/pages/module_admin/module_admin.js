@@ -1,5 +1,4 @@
 /* Variable and initialization */
-// dummy
 let course_id = window.location.search.substring(1).split('=')[1];
 let parentDiv = document.getElementsByClassName("module")[0];
 let addModuleForm = document.getElementsByClassName("addModuleForm")[0];
@@ -34,23 +33,25 @@ function loadModule(moduleData){
           `
           )
           );
-        }
+}
         
-        function loadAddModuleForm(){
-          addModuleForm.style.display = "flex";
-          
-          // When form appear, add event listener to submit the new module
-          let saveAddModuleButton = document.getElementsByClassName("saveButton")[0];
-          
-          // Add variable for input
-          let kodeMapelInput = document.getElementById("moduleKodeMapel");
-          let moduleNumberInput = document.getElementById("moduleNumber");
-          let moduleTitleInput = document.getElementById("moduleTitle");
-          let moduleDescriptionInput = document.getElementById("moduleDescription");
-          
-          saveAddModuleButton.addEventListener("click", function(){addModule(kodeMapelInput.value, moduleNumberInput.value,  moduleTitleInput.value, 
-            moduleDescriptionInput.value)});
-  
+function loadAddModuleForm(){
+  if (addModuleForm.style.display=="none"){
+    addModuleForm.style.display = "flex";
+    // When form appear, add event listener to submit the new module
+    let saveAddModuleButton = document.getElementsByClassName("saveButton")[0];
+    
+    // Add variable for input
+    let kodeMapelInput = document.getElementById("moduleKodeMapel");
+    let moduleNumberInput = document.getElementById("moduleNumber");
+    let moduleTitleInput = document.getElementById("moduleTitle");
+    let moduleDescriptionInput = document.getElementById("moduleDescription");
+    
+    saveAddModuleButton.addEventListener("click", function(){addModule(kodeMapelInput.value, moduleNumberInput.value,  moduleTitleInput.value, 
+      moduleDescriptionInput.value)});
+  } else {
+    addModuleForm.style.display="none"
+  }    
 }
 
 /* Connections to Server */
@@ -147,7 +148,7 @@ function deleteModule(no_modul){
 
 /* Redirect */
 function editModule(no_modul){
-  window.location.href= '../material_admin/material_admin.html?no_modul=' + no_modul};
+  window.location.href= '../material_admin/material_admin.html?kode_mapel='+course_id+" &module_number=" + no_modul};
 
 /* caller */
 window.addEventListener("load", getModules);
