@@ -19,46 +19,30 @@
         />
     </head>
     <body>
-        <header>
-            <section class="navbar searchBox">
-                <img 
-                src="../../assets/Lup.png" 
-                alt="Lup icon"
-                id="lup"
-            />
-            <input 
-                type="text" 
-                class="searchInput" 
-                placeholder="What do you want to learn?" 
-            />
-            <img 
-                src="../../../../assets/Filter.png" 
-                alt="Filter icon"
-                id="filter"
-            />
-            </section>
-
-            <section class="navbar features">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Course</a></li>
-                    <li><a href="#">Exercise</a></li>
-                    <li id="profileButton">
-                        <img 
-                            src="../../assets/albert.jpg" 
-                            alt="profile picture"
-                            id="profileIcon"
-                        />
-                    </li>
-                  </ul>
-            </section>
-        </header>
+        <header id="header"></header>
 
         <main id="course">
             <section class="pageLabel">
                 <h2>Course Admin</h2>
             </section>
+            <div class="textInput">
+                <label>course name</label>
+                <input
+                  class="transition-all"
+                  placeholder="input course name"
+                  id="nama_depan"
+                  type="text"
+                />
+            </div>
+            <div class="textInput">
+                <label>description</label>
+                <input
+                  class="transition-all"
+                  placeholder="input description"
+                  id="nama_depan"
+                  type="text"
+                />
+            </div>
             <script src="./course_admin.js"></script>
             <div class="addcourse">
                 <button>
@@ -68,47 +52,6 @@
             
         </main>
 
-        <footer>
-            <div class="head">
-                <h2>Contact Us</h2>
-            </div>
-            <div class="contacts">
-                <div class="contact">
-                    <img 
-                        src="../../../../assets/fbicon.png" 
-                        alt="facebook icon"
-                    />
-                    <p>studyDojo</p>
-                </div>
-                <div class="contact">
-                    <img 
-                        src="../../../../assets/waicon.png" 
-                        alt="whatsapp icon"
-                    />
-                    <p>+6289587123114</p>
-                </div>
-                <div class="contact">
-                    <img 
-                        src="../../../../assets/igicon.png"   
-                        alt="instagram icon"
-                    />
-                    <p>study.Dojo</p>
-                </div>
-                <div class="contact">
-                    <img 
-                        src="../../../../assets/yticon.png" 
-                        alt="youtube icon"
-                    />
-                    <p>Dojo Study</p>
-                </div>
-                <div class="contact">
-                    <img 
-                        src="../../../../assets/locicon.png" 
-                        alt="location icon"
-                    />
-                    <p>Jl. Jend. Gatot Subroto Kav. 12 Kuningan Barat South Jakarta DKI Jakarta 12710</p>
-                </div>
-            </div>
-        </footer>
+        <footer id="footer"></footer>
     </body>
 </html>
