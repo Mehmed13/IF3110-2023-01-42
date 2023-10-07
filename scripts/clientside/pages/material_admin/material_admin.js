@@ -27,6 +27,11 @@ moduleData.map(el => (
     )
 ))  
 
+function loadPage() {
+    generateNavbar();
+    generateFooter();
+  }
+
 function uploadVideo() {
     // Get the file input element
     const input = document.getElementById("videoInput");
