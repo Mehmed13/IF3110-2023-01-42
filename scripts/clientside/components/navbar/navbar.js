@@ -1,67 +1,265 @@
+const BASE_PROFILE_PICTURE_PATH = "/Data/profilePicture/";
+
 function generateNavbar() {
+  getSession()
+    .then((session) => {
+      if (session["status"]) {
+        generateNavbarByRoles(
+          session["data"]["role"],
+          session["data"]["profile_pict"],
+          session["data"]["nama_depan"]
+        );
+      } else {
+        generateNavbarByRoles("unregistered", null, null);
+      }
+    })
+    .catch((error) => {
+      console.log("error", error);
+    });
+}
+
+function generateNavbarByRoles(role, profile_pict, nama_depan) {
+  // getlinks
+  const links = getLinksByRole(role);
+
+  // find the header
   const header = document.getElementById("header");
 
   // searchbox
   const searchBox = document.createElement("section");
-  searchBox.classList = "navbar searchBox";
+  searchBox.classList.add("searchBox");
 
-  const lup = document.createElement("img");
-  lup.src = "/assets/Lup.png";
-  lup.alt = "Lup icon";
-  lup.id = "lup";
+  // searchButton
+  const searchButton = document.createElement("button");
+  searchButton.classList.add("searchButton");
+  const searchButtonImg = document.createElement("img");
+  searchButtonImg.src = "/assets/Lup.png";
+  searchButtonImg.alt = "Lup icon";
+  searchButton.appendChild(searchButtonImg);
 
+  // searchInput
   const searchInput = document.createElement("input");
   searchInput.type = "text";
-  searchInput.classList = "searchInput";
+  searchInput.classList.add("searchInput");
   searchInput.placeholder = "What do you want to learn?";
 
-  const filterIcon = document.createElement("img");
-  filterIcon.src = "/assets/Filter.png";
-  filterIcon.alt = "Filter icon";
-  filterIcon.id = "filter";
+  // searchFilter
+  const searchFilter = document.createElement("button");
+  searchFilter.classList.add("searchFilter");
+  const searchFilterImg = document.createElement("img");
+  searchFilterImg.src = "/assets/Filter.png";
+  searchFilterImg.alt = "Filter icon";
+  searchFilter.appendChild(searchFilterImg);
 
   // Append elements to searchBox
-  searchBox.appendChild(lup);
+  searchBox.appendChild(searchButton);
   searchBox.appendChild(searchInput);
-  searchBox.appendChild(filterIcon);
+  searchBox.appendChild(searchFilter);
 
   // features
   const features = document.createElement("section");
-  features.classList = "navbar features";
+  features.classList.add("features");
 
-  const ul = document.createElement("ul");
-
-  const links = [
-    { href: "../home/home.html", text: "Home" },
-    { href: "../about_us/about_us.html", text: "About" },
-    { href: "../courses/course.html", text: "Course" },
-    { href: "../exercises/exercises.html", text: "Exercise" },
-  ];
+  // route list
+  const routeList = document.createElement("div");
+  routeList.classList.add("routeList");
 
   links.forEach((link) => {
-    const li = document.createElement("li");
     const a = document.createElement("a");
     a.href = link.href;
     a.textContent = link.text;
-    li.appendChild(a);
-    ul.appendChild(li);
+    routeList.appendChild(a);
   });
 
-  const profileButton = document.createElement("li");
-  profileButton.id = "profileButton";
+  features.appendChild(routeList);
 
-  const profileIcon = document.createElement("img");
-  profileIcon.src = "/assets/albert.jpg";
-  profileIcon.alt = "profile picture";
-  profileIcon.id = "profileIcon";
+  if (role === "unregistered") {
+    const loginButton = document.createElement("button");
+    loginButton.classList.add("loginButton");
+    loginButton.innerHTML = "Login";
+    loginButton.addEventListener("click", function () {
+      window.location = "http://localhost:8080/pages/login/login.html";
+    });
+    features.appendChild(loginButton);
+  } else {
+    // profileButton
+    const profileButton = document.createElement("button");
+    profileButton.classList.add("profileButton");
+    profileButton.addEventListener("click", function () {
+      showPopup(role, profile_pict, nama_depan);
+    });
 
-  profileButton.appendChild(profileIcon);
-  ul.appendChild(profileButton);
+    const profileIcon = document.createElement("img");
+    profileIcon.src = BASE_PROFILE_PICTURE_PATH + profile_pict;
+    profileIcon.alt = "profile picture";
+    profileIcon.id = "profileIcon";
+    profileIcon.onerror = setDefaultImg;
 
-  // Append ul to features
-  features.appendChild(ul);
+    profileButton.appendChild(profileIcon);
+    features.appendChild(profileButton);
+  }
 
-  // Insert sections to header
   header.appendChild(searchBox);
   header.appendChild(features);
+}
+
+function showPopup(role, profile_pict, nama_depan) {
+  const navPopup = document.getElementById("navPopup");
+  const header = document.getElementById("header");
+
+  if (navPopup !== null) {
+    header.removeChild(navPopup);
+  } else {
+    const navPopup = document.createElement("section");
+    navPopup.classList.add("navPopup");
+    navPopup.id = "navPopup";
+
+    const profileCt = document.createElement("div");
+    profileCt.classList.add("profileCt");
+
+    const profileIcon = document.createElement("img");
+    profileIcon.src = BASE_PROFILE_PICTURE_PATH + profile_pict;
+    profileIcon.alt = "profile picture";
+    profileIcon.id = "profileIcon";
+    profileIcon.onerror = setDefaultImg;
+
+    const nameCt = document.createElement("div");
+    nameCt.classList.add("nameCt");
+
+    const nameLink = document.createElement("a");
+    nameLink.textContent = nama_depan;
+
+    const roleLink = document.createElement("a");
+    roleLink.classList.add("role");
+    if (role === "admin") {
+      roleLink.textContent = "Admin";
+    } else {
+      roleLink.textContent = "Student";
+    }
+
+    const logoutButton = document.createElement("button");
+    logoutButton.classList.add("logoutButton");
+    logoutButton.textContent = "Logout";
+    logoutButton.addEventListener("click", function () {
+      logout();
+    });
+
+    nameCt.appendChild(nameLink);
+    nameCt.appendChild(roleLink);
+    nameCt.appendChild(logoutButton);
+
+    profileCt.appendChild(profileIcon);
+    profileCt.appendChild(nameCt);
+
+    const divider = document.createElement("div");
+    divider.classList.add("divider");
+
+    const routeCt = document.createElement("div");
+    routeCt.classList.add("routeCt");
+
+    const navbarRoute = document.createElement("div");
+    navbarRoute.classList.add("navbarRoute");
+
+    const navbarRouteLinks = getLinksByRole(role);
+    navbarRouteLinks.forEach((link) => {
+      const a = document.createElement("a");
+      a.href = link.href;
+      a.textContent = link.text;
+      navbarRoute.appendChild(a);
+    });
+
+    const userRoute = document.createElement("div");
+    userRoute.classList.add("userRoute");
+
+    const userRouteLinks = [
+      { href: "../profile/profile.html", text: "Profile" },
+      { href: "../courses/course.html", text: "My Course" },
+      { href: "../courses/course.html", text: "Help" },
+    ];
+    userRouteLinks.forEach((link) => {
+      const a = document.createElement("a");
+      a.href = link.href;
+      a.textContent = link.text;
+      userRoute.appendChild(a);
+    });
+
+    routeCt.appendChild(navbarRoute);
+    routeCt.appendChild(userRoute);
+
+    navPopup.appendChild(profileCt);
+    navPopup.appendChild(divider);
+    navPopup.appendChild(routeCt);
+
+    header.appendChild(navPopup);
+  }
+}
+
+function getLinksByRole(role) {
+  if (role === "admin") {
+    return [
+      { href: "../home/home.html", text: "Home" },
+      { href: "../about_us/about_us.html", text: "About" },
+      { href: "../course_admin/course_admin.html", text: "Course" },
+      { href: "../exercises/exercises.html", text: "Exercise" },
+    ];
+  } else if (role === "user") {
+    return [
+      { href: "../home/home.html", text: "Home" },
+      { href: "../about_us/about_us.html", text: "About" },
+      { href: "../courses/course.html", text: "Course" },
+      { href: "../exercises/exercises.html", text: "Exercise" },
+    ];
+  } else {
+    return [
+      { href: "../home/home.html", text: "Home" },
+      { href: "../about_us/about_us.html", text: "About" },
+    ];
+  }
+}
+
+function setDefaultImg() {
+  const img = document.getElementById("profileIcon");
+  img.src = BASE_PROFILE_PICTURE_PATH + "default.jpg";
+  img.alt = "Default Image";
+}
+
+function getSession() {
+  return new Promise((resolve, reject) => {
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4) {
+        if (this.status == 200) {
+          const session = JSON.parse(this.responseText);
+          resolve(session);
+        } else {
+          reject(this.status);
+        }
+      }
+    };
+
+    xhttp.open("GET", "http://localhost:8000/api/auth/info", true);
+    xhttp.setRequestHeader("Accept", "application/json");
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.withCredentials = true;
+    xhttp.send();
+  });
+}
+
+function logout() {
+  const xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        location.reload();
+      }
+    }
+  };
+
+  xhttp.open("GET", "http://localhost:8000/api/auth/logout", true);
+  xhttp.setRequestHeader("Accept", "application/json");
+  xhttp.setRequestHeader("Content-Type", "application/json");
+  xhttp.withCredentials = true;
+  xhttp.send();
 }
