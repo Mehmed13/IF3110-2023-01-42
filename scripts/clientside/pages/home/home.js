@@ -116,7 +116,6 @@ function DisplayItem(paginatedItems,wrapper,  page) {
 }
 
 function loadCoursePage(coursePageData){
-  console.log(coursePageData);
   DisplayItem(coursePageData, course_element, current_course_page);
 }
 
