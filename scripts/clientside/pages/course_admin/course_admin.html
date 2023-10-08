@@ -49,15 +49,54 @@
                   type="text"
                 />
             </div>
-            <script src="./course_admin.js"></script>
-            <div class="addcourse">
-                <button>
-                    <h3>Add course</h3>
+
+            <div class="addCourse">
+                <button id="addCourseButton">
+                  <h3>Add Course</h3>
                 </button>
-            </div>
+                <div class="addCourseForm">
+                  <div class="addCourseData" id="no_modul">
+                    <div class="head">
+                      <h4>No Course</h4>
+                    </div>
+                    <input
+                      type="text"
+                      class="courseInput"
+                      placeholder=""
+                      id="courseNumber"
+                    />
+                  </div>
+                  <div class="addCourseData" id="judul">
+                    <div class="head">
+                      <h4>Judul</h4>
+                    </div>
+                    <input
+                      type="text"
+                      class="courseInput"
+                      placeholder=""
+                      id="courseTitle"
+                    />
+                  </div>
+                  <div class="addCourseData" id="deskripsi">
+                    <div class="head">
+                      <h4>Deskripsi</h4>
+                    </div>
+                    <input
+                      type="text"
+                      class="courseInput"
+                      placeholder=""
+                      id="courseDescription"
+                    />
+                  </div>
+                  <div class="saveButton">
+                    <button class="button" type="submit">Save New Course</button>
+                  </div>
+                </div>
+              </div>
             
         </main>
         
         <footer id="footer"></footer>
     </body>
+    <script src="./course_admin.js"></script>
 </html>
