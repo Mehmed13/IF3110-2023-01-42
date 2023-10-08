@@ -38,7 +38,7 @@ function loadAddCourseForm(){
   let courseTitleInput = document.getElementById("courseTitle");
   let courseDescriptionInput = document.getElementById("courseDescription");
   
-  saveAddCourseButton.addEventListener("click", function(){addCourse(courseNumberInput.value,  moduleTitleInput.value, 
+  saveAddCourseButton.addEventListener("click", function(){addCourse(courseNumberInput.value,  courseTitleInput.value, 
     courseDescriptionInput.value)});  
 }
 
@@ -116,7 +116,7 @@ function deleteCourse(no_modul){
         }
       }
       else{
-        alert("failed to delete course");
+        alert("Failed to delete course");
       }
     }
   };
@@ -124,7 +124,7 @@ function deleteCourse(no_modul){
   let data = {
     no_modul:no_modul
   };
-  xhttp.open("POST", "http://localhost:8000/api/moduleapi/deletemodule", true);
+  xhttp.open("POST", "http://localhost:8000/api/moduleapi/deletecourse", true);
   xhttp.setRequestHeader("Accept", "application/json");
   xhttp.setRequestHeader("Content-Type", "application/json");
   xhttp.withCredentials = true;
