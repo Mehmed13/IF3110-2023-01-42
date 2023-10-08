@@ -4,7 +4,7 @@ main{
     padding: 1% 2.5% 5% 2.5%;
 }
 
-button{
+main button{
     background-color: #4D2C5E;
     padding: 0% 3%;
     margin: 0% 0% 3%;
@@ -15,11 +15,11 @@ button{
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-button:hover{
+main button:hover{
     scale: 110%;
 }
 
-button:active{
+main button:active{
     background-color: #2f133c;
 }
 
@@ -99,15 +99,34 @@ h3{
 label {
     background-color: #4D2C5E;
     color: white;
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
+    align-items: center;
 }
 
+label:hover{
+    scale: 105%;
+}
 
 
 #videoInput{
     display: none;
+}
+
+
+
+.editMaterialForm{
+    width: 55%;
+    margin: auto;
+    margin-bottom: 5%;
+    border-radius: 20px;
+    color: #4D2C5E;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Add shadow */ 
+    flex-direction: column;
+    background-color: #fff;
+    padding: 5px 15px;
 }
 
 .editVideo{
@@ -153,13 +172,29 @@ label {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
+
+#saveChangeButton{
+    display: flex;
+    justify-content: center;
+}
+#saveChangeButton button{
+    padding: 0%;
+    width: 200px;
+}
+.saveChangeButton p{
+    color: #fff;
+}
+
+
 textarea{
     width: 95%;
     height: 300px;
     border-radius: 20px;
     border-style:solid ;
     border-width: 3px ;
-    
+    vertical-align: top; /* Set vertical alignment to top */
+    direction: ltr; /* Set text direction to left-to-right */
+
     resize: none;
 }
 
@@ -175,7 +210,7 @@ textarea{
     flex-direction: row;
     align-items: center;
     color: #4D2C5E;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
 }
 
 .exercise img{
@@ -212,3 +247,48 @@ textarea{
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
+/* Add Material*/
+
+.addMaterialForm{
+    display: none;
+    padding: 2% 5% .1%;
+    border-radius: 20px;
+    color: #4D2C5E;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3); /* Add shadow */ 
+    flex-direction: column;
+    background-color: #fff;
+    width: 80%;
+    margin: auto;
+}
+
+.addMaterialData{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+
+.addMaterialData input{
+    padding: 10px;
+    border-radius: 12px;
+    border-color: #c3c3c3;
+    border-style: solid;
+    outline: none;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    width: 80%;
+}
+
+.addMaterialForm button{
+    background-color: #4D2C5E;
+    color: #fff;
+    margin-top: 3%;
+    padding: 5px 15px;
+    border-radius: 12px;
+    border-color: #4D2C5E;
+    color: #fff;
+    border-style: solid;
+    outline: none;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+}
