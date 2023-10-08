@@ -19,7 +19,9 @@ function loadPage() {
   generateFooter();
   getMaxPagination()
     .then((max) => {
-      generatePagination(max.data, 1, generateHistoryList);
+      if (max.data !== "no_history") {
+        generatePagination(max.data, 1, generateHistoryList);
+      }
     })
     .catch((err) => {
       console.log("err", err);
@@ -45,7 +47,7 @@ function getMaxPagination() {
         };
 
         const data = {
-          ID_Pengguna: 3,
+          ID_Pengguna: session["data"]["ID_Pengguna"],
           size: 5,
         };
 
@@ -86,7 +88,7 @@ function getStudyHistory(page) {
         };
 
         const data = {
-          ID_Pengguna: 3,
+          ID_Pengguna: session["data"]["ID_Pengguna"],
           page: page,
           size: 5,
         };
@@ -116,12 +118,18 @@ function generateHistoryList(page) {
   getStudyHistory(page)
     .then((history) => {
       const parentDiv = document.getElementById("studyHistoryCt");
+      if (history.data === "no_history") {
+        const p = document.createElement("p");
+        p.innerHTML = "No history found";
+        parentDiv.appendChild(p);
+      } else {
+        while (parentDiv.hasChildNodes()) {
+          parentDiv.removeChild(parentDiv.firstChild);
+        }
 
-      while (parentDiv.hasChildNodes()) {
-        parentDiv.removeChild(parentDiv.firstChild);
+        console.log("history.data", history.data);
+        history.data.map((el) => getMaterial(parentDiv, el["ID_Material"]));
       }
-
-      history.data.map((el) => getMaterial(parentDiv, el["ID_Material"]));
     })
     .catch((err) => {
       console.log("err", err);
