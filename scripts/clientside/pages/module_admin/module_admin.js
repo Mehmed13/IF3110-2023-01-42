@@ -147,4 +147,6 @@ function editModule(no_modul){
   window.location.href= '../material_admin/material_admin.html?kode_mapel='+course_id+" &module_number=" + no_modul};
 
 /* caller */
+/* caller */
+window.addEventListener("load", getModules);
 addModuleButton.addEventListener("click", loadAddModuleForm);

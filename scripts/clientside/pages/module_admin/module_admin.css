@@ -4,7 +4,7 @@ main{
     padding: 1% 2.5% 5% 2.5%;
 }
 
-button{
+main button{
     background-color: #4D2C5E;
     margin-bottom: 3%;
     margin-right: 3%;
@@ -17,11 +17,11 @@ button{
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-button:hover{
+main button:hover{
     scale: 110%;
 }
 
-button:active{
+main button:active{
     background-color: #2f133c;
 }
 
