@@ -137,7 +137,7 @@ function deleteCourse(kode_mapel){
 
 /* Redirect */
 function editCourse(no_course){
-  window.location.href= '../material_admin/material_admin.html?no_course=' + no_course};
+  window.location.href= '../material_admin/material_admin.html?kode_mapel=' + no_course};
 
 /* caller */
 window.addEventListener("load", getCourses);
