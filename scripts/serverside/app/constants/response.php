@@ -16,3 +16,6 @@ define('WRONG_PASSWORD', 'wrong_password');
 #==== REGISTER API RESPONSE
 define('EMAIL_REGISTERED', 'email_registered');
 define('USERNAME_REGISTERED', 'username_registered');
+
+#==== USER HISTORY RESPONSE
+define('NO_HISTORY_FOUND', 'no_history');

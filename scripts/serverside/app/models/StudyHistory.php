@@ -41,8 +41,9 @@ class StudyHistory
 
     public function getUserHistoryById($idPengguna, $page, $size)
     {
-        $this->db->query("SELECT * FROM " . $this->table . "WHERE ID_Pengguna = :data");
-        $this->db->bindParam(":data", $idPengguna);
+        // $this->db->query("SELECT * FROM " . $this->table . " WHERE ID_Pengguna = :id ORDER BY tanggal_akses DESC LIMIT :size OFFSET :offset");
+        $this->db->query("SELECT * FROM " . $this->table . " WHERE ID_Pengguna = :id ORDER BY tanggal_akses DESC LIMIT " . $size . " OFFSET " . $size * ($page - 1));
+        $this->db->bindParam(":id", $idPengguna);
         try {
             $this->db->execute();
             return $this->db->getAllResult();
@@ -53,12 +54,12 @@ class StudyHistory
 
     public function getNumberOfPage($idPengguna, $size)
     {
-        $this->db->query("SELECT COUNT(*) FROM" . $this->table . "WHERE ID_Pengguna = :data");
+        $this->db->query("SELECT COUNT(*) as SUM FROM " . $this->table . " WHERE ID_Pengguna = :data");
         $this->db->bindParam(":data", $idPengguna);
         try {
             $this->db->execute();
-            $records = $this->db->getAllResult();
-            return ceil($records / $size);
+            $records = $this->db->getResult();
+            return ceil($records["SUM"] / $size);
         } catch (PDOException $e) {
             return  false;
         }

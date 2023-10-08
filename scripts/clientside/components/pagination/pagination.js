@@ -1,4 +1,4 @@
-function generatePagination(maxPage, currentPage) {
+function generatePagination(maxPage, currentPage, callback) {
   const paginationCt = document.getElementById("paginationCt");
 
   const paginationList = document.createElement("div");
@@ -8,7 +8,7 @@ function generatePagination(maxPage, currentPage) {
   prevButton.classList.add("navigationPaginationButton");
   prevButton.id = "prevButton";
   prevButton.addEventListener("click", function () {
-    prevPage();
+    prevPage(callback);
   });
 
   const prevButtonImg = document.createElement("img");
@@ -21,7 +21,7 @@ function generatePagination(maxPage, currentPage) {
   nextButton.classList.add("navigationPaginationButton");
   nextButton.id = "nextButton";
   nextButton.addEventListener("click", function () {
-    nextPage(maxPage);
+    nextPage(callback, maxPage);
   });
 
   const nextButtonImg = document.createElement("img");
@@ -40,7 +40,7 @@ function generatePagination(maxPage, currentPage) {
     }
 
     pageButton.addEventListener("click", function () {
-      changePage(i, maxPage);
+      changePage(callback, i, maxPage);
     });
     paginationList.appendChild(pageButton);
   }
@@ -50,28 +50,40 @@ function generatePagination(maxPage, currentPage) {
   paginationCt.appendChild(nextButton);
 }
 
-function prevPage() {
+function prevPage(callback) {
   const currentPage = document.getElementsByClassName("currentPage")[0];
-  if (currentPage.id === "page-1") {
-    console.log("gabisa");
+  if (parseInt(currentPage.innerHTML) === 1) {
+    alertNotification(false, "End of data");
   } else {
-    console.log("bisa");
+    currentPage.classList.remove("currentPage");
+    const prevPage = parseInt(currentPage.innerHTML) - 1;
+    const newCP = document.getElementById("page-" + prevPage);
+    newCP.classList.add("currentPage");
+    callback(prevPage);
   }
 }
 
-function nextPage(max) {
+function nextPage(callback, max) {
   const currentPage = document.getElementsByClassName("currentPage")[0];
-  if (currentPage.id === "page-" + max) {
-    console.log("gabisa");
+  if (parseInt(currentPage.innerHTML) === max) {
+    alertNotification(false, "End of data");
   } else {
-    console.log("bisa");
+    currentPage.classList.remove("currentPage");
+    const nextPage = parseInt(currentPage.innerHTML) + 1;
+    const newCP = document.getElementById("page-" + nextPage);
+    newCP.classList.add("currentPage");
+    callback(nextPage);
   }
 }
 
-function changePage(destinationPage, max) {
+function changePage(callback, destinationPage, max) {
+  const currentPage = document.getElementsByClassName("currentPage")[0];
   if (destinationPage > max || destinationPage < 1) {
-    console.log("gabisa");
+    alertNotification(false, "End of data");
   } else {
-    console.log("bisa");
+    currentPage.classList.remove("currentPage");
+    const newCP = document.getElementById("page-" + destinationPage);
+    newCP.classList.add("currentPage");
+    callback(destinationPage);
   }
 }
