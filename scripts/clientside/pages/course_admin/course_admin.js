@@ -34,11 +34,12 @@ function loadAddCourseForm(){
   let saveAddCourseButton = document.getElementsByClassName("saveButton")[0];
   
   // Add variable for input
-  let courseNumberInput = document.getElementById("courseNumber");
+  let courseCodeInput = document.getElementById("courseCode");
+  let courseClassInput = document.getElementById("courseClass");
   let courseTitleInput = document.getElementById("courseTitle");
   let courseDescriptionInput = document.getElementById("courseDescription");
   
-  saveAddCourseButton.addEventListener("click", function(){addCourse(courseNumberInput.value,  courseTitleInput.value, 
+  saveAddCourseButton.addEventListener("click", function(){addCourse(courseCodeInput.value, courseClassInput.value, courseTitleInput.value,
     courseDescriptionInput.value)});  
 }
 
@@ -60,7 +61,7 @@ function getCourses(){
   };
   xhttp.open(
     "GET",
-    "http://localhost:8000/api/moduleapi/getmodulebykodemapel?kode_mapel=" + course_id,
+    "http://localhost:8000/api/courseapi/getallcourse",
     true
   );
   xhttp.setRequestHeader("Accept", "application/json");
@@ -68,7 +69,7 @@ function getCourses(){
   xhttp.send();
 }
 
-function addCourse(no_course, judul, deskripsi){
+function addCourse(kode_mapel, kelas, nama, deskripsi){
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -88,12 +89,13 @@ function addCourse(no_course, judul, deskripsi){
   };
 
   let data = {
-    no_course: no_course,
-    judul: judul,
+    kode_mapel: kode_mapel,
+    kelas: kelas,
+    nama: nama,
     deskripsi: deskripsi
   };
 
-  xhttp.open("POST", "http://localhost:8000/api/moduleapi/addcourse", true);
+  xhttp.open("POST", "http://localhost:8000/api/courseapi/addcourse", true);
   xhttp.setRequestHeader("Accept", "application/json");
   xhttp.setRequestHeader("Content-Type", "application/json");
   xhttp.withCredentials = true;
@@ -102,7 +104,7 @@ function addCourse(no_course, judul, deskripsi){
 
 
 
-function deleteCourse(no_modul){
+function deleteCourse(kode_mapel){
   let xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -122,7 +124,7 @@ function deleteCourse(no_modul){
   };
 
   let data = {
-    no_modul:no_modul
+    kode_mapel:kode_mapel
   };
   xhttp.open("POST", "http://localhost:8000/api/moduleapi/deletecourse", true);
   xhttp.setRequestHeader("Accept", "application/json");

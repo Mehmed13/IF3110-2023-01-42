@@ -42,4 +42,37 @@ class Course
         }
     }
 
+    public function addCourse($kode_mapel, $kelas, $nama, $deskripsi){
+        $this->db->startTransaction();
+        $this->db->query("INSERT INTO " . $this->table . " VALUES (:kode_mapel, :kelas, :nama, :deskripsi)" );
+    
+        $this->db->bindParam(':kode_mapel', $kode_mapel);
+        $this->db->bindParam(':kelas', $no_modul);
+        $this->db->bindParam(':nama', $judul);
+        $this->db->bindParam(':deskripsi', $deskripsi);
+        try {
+            
+            $this->db->execute();
+            $this->db->commit();
+            return true;
+        } catch (PDOException $e) {
+            return  false;
+        }
+    }
+
+    public function deleteCourse($kode_mapel){
+        $this->db->startTransaction();
+        $this->db->query("DELETE FROM " . $this->table . " WHERE kode_mapel = :kode_mapel" );
+
+        $this->db->bindParam(':kode_mapel', $no_modul);
+        try {
+            
+            $this->db->execute();
+            $this->db->commit();
+            return true;
+        } catch (PDOException $e) {
+            return  false;
+        }
+    }
+
 }
