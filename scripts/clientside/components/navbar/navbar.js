@@ -177,7 +177,7 @@ function showPopup(role, profile_pict, nama_depan) {
 
     const userRouteLinks = [
       { href: "../profile/profile.html", text: "Profile" },
-      { href: "../courses/course.html", text: "My Course" },
+      { href: "../study_history/study_history.html", text: "Study History" },
       { href: "../courses/course.html", text: "Help" },
     ];
     userRouteLinks.forEach((link) => {

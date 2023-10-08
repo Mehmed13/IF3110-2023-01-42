@@ -17,6 +17,7 @@
     />
 
     <link rel="stylesheet" href="./study_history.css" />
+
     <link rel="stylesheet" href="../../style.css" />
 
     <script src="../../components/navbar/navbar.js"></script>
@@ -32,6 +33,9 @@
       rel="stylesheet"
       href="../../components/alertNotification/alertNotification.css"
     />
+
+    <script src="../../components/pagination/pagination.js"></script>
+    <link rel="stylesheet" href="../../components/pagination/pagination.css" />
   </head>
   <body onload="loadPage()">
     <header id="header"></header>
@@ -40,7 +44,9 @@
       <section class="pageLabel">
         <h2>Study History</h2>
       </section>
+      <section id="studyHistoryCt"></section>
     </main>
+    <div class="paginationCt" id="paginationCt"></div>
 
     <footer id="footer"></footer>
   </body>
