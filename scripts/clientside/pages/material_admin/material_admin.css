@@ -99,16 +99,23 @@ h3{
 label {
     background-color: #4D2C5E;
     color: white;
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
+    align-items: center;
 }
 
+label:hover{
+    scale: 105%;
+}
 
 
 #videoInput{
     display: none;
 }
+
+
 
 .editMaterialForm{
     width: 55%;

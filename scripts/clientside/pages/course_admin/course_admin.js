@@ -39,6 +39,7 @@ courseData.map((el) =>
 );
 
 function loadPage() {
+  auth(["admin"], `/pages/home/home.html`);
   generateNavbar();
   generateFooter();
 }

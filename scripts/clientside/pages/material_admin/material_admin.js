@@ -165,11 +165,11 @@ function uploadVideo(ID_Material) {
     // Get the file input element
     const input = document.getElementsByClassName(`videoInput${ID_Material}`)[0];
 
-    // Check if a file has been selected
-    if (input.files.length === 0) {
-        alert("Please select a video file.");
-        return;
-    }
+  // Check if a file has been selected
+  if (input.files.length === 0) {
+    alert("Please select a video file.");
+    return;
+  }
 
     // Get the selected file
     const videoFile = input.files[0]["name"];
@@ -188,8 +188,8 @@ function deleteVideo(ID_Material) {
     // Empty the file
     const videoFile = "";
 
-    // You can now work with the selected videoFile
-    // For example, you can send it to a server for processing or display it in an HTML video element.
+  // You can now work with the selected videoFile
+  // For example, you can send it to a server for processing or display it in an HTML video element.
 
     // Display the selected video (example)
     displayVideo(videoFile, ID_Material);
