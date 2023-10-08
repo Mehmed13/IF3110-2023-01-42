@@ -33,7 +33,7 @@ class Module
     }
 
     public function getNumberOfModule(){
-        $this->db->query("SELECT COUNT(no_modul) AS numberOfModule FROM " . $this->table);
+        $this->db->query("SELECT COUNT(*) AS numberOfModule FROM " . $this->table);
         try {
             $this->db->execute();
             return $this->db->getResult();
