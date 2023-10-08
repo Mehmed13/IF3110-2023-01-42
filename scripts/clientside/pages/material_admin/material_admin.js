@@ -17,13 +17,13 @@ function loadMaterials(materialData){
       parentDiv.insertAdjacentHTML(
         "beforeend",
         `
-        <div class="content" id="material"+${el.ID_Material}>
+        <div class="content" id="material${el.ID_Material}">
             <div class="contentTitle">
                 <h2>${el.judul}</h2>
             </div>
     
             <div class="adminButtons">
-                <button id="edit" onclick="loadEditMaterialForm(${el.ID_Material})">
+                <button id="edit" onclick="getMaterialById(${el.ID_Material})">
                     <h3>Edit</h3>
                 </button>
                 <button id="delete" onclick="deleteMaterial(${el.ID_Material})">
@@ -40,101 +40,130 @@ function loadAddMaterialForm(){
     if (addMaterialForm.style.display=="none"){
       addMaterialForm.style.display = "flex";
       // When form appear, add event listener to submit the new module
-      let saveAddMaterialButton = document.getElementsByClassName("saveAddMaterialButton")[0];
-      
+      let saveAddMaterialButton = document.getElementsByClassName("saveButton")[0];
+      let kodeMapelInput = document.getElementById("materialKodeMapel");
+      let moduleNumberInput = document.getElementById("moduleNumber");
+      let materialTitleInput = document.getElementById("materialTitle");
+      let videoInput = document.getElementById("videoInput");
+      let teksInput = document.getElementById("teksInput");
       // Add variable for input
+      console.log("masuk");
 
-      saveAddMaterialButton.addEventListener("click", function(){addMaterial});
+
+
+      saveAddMaterialButton.addEventListener("click", function(){
+        addMaterial(kodeMapelInput.value,moduleNumberInput.value,materialTitleInput.value, videoInput.files[0]['name'], teksInput.value);
+      });
     } else {
-      addModuleForm.style.display="none"
+      addMaterialForm.style.display="none"
     }    
 }
 
-function loadEditMaterialForm(ID_Material)
+function loadEditMaterialForm(materialData)
 {
-    let materialParent = document.getElementById("material"+ID_Material);
-    materialParent.insertAdjacentElement("afterend",
+    let videoPath = '../../Data/materivideo/';
+    let materialParent = document.getElementById(`material${materialData['ID_Material']}`);
+    console.log(materialData["teks"]);
+    materialParent.insertAdjacentHTML("afterend",
     `
-    <div class="editVideoContainer">
-    <div class="editVideoTitle">
-        <h3>Edit video</h3>
-    </div>
-    <div class="editVideo">
-        <div class="video">
-            <video src="../../Data/materiVideo/take me home.mp4"
-            controls="true"
-            ></video>
+    <div class="editMaterialForm">
+      <div class="editVideoContainer">
+        <div class="editVideoTitle">
+            <h3>Edit video</h3>
         </div>
-    
-        <div class="videoModification">
-            <div class="videoSelector">
-                <label for="videoInput">Choose a video</label>
-                <input type="file" id="videoInput" accept="video/*">
+        <div class="editVideo">
+            <div class="video" id="video${materialData["ID_Material"]}">
+                <video src="${videoPath}${materialData['video']}"
+                controls="true"
+                ></video>
             </div>
-            <div class="editVideoButtons">
-                <button onclick="uploadVideo()">
-                    <h3>Upload</h3>
-                </button>
-                <button id="delete">
-                    <h3>Delete</h3>  
-                </button>
+        
+            <div class="videoModification">
+                <div class="videoSelector">
+                    <label for="videoInput">Choose a video</label>
+                    <input type="file" id="videoInput" class="videoInput${materialData["ID_Material"]}" accept="video/*">
+                </div>
+                <div class="editVideoButtons">
+                    <button onclick="uploadVideo(${materialData["ID_Material"]})">
+                        <h3>Upload</h3>
+                    </button>
+                    <button id="delete" onclick="deleteVideo(${materialData["ID_Material"]})">
+                        <h3>Delete</h3>  
+                    </button>
+                </div>
+            </div>
+        
+        </div>
+      </div>
+        
+      <div class="editTextContainer">
+        <div class="editTextTitle">
+            <h3>Edit material text</h3>
+        </div>
+        <div class="editText">
+            <textarea name="text material" id="teksInput${materialData["ID_Material"]}">
+              ${materialData["teks"]}
+            </textarea>
+            <div class="editTextButtons">
+        
+            </div>  
+        </div>
+      </div>
+        
+      <div class="editExerciseContainer">
+        <div class="editExerciseTitle">
+            <h3>Edit exercise</h3>
+        </div>
+        <div class="exercise">
+            <img 
+            src="../../../../assets/module-profile.png" 
+            alt="exercise profile icon"
+            id="exercise-profile"
+            />
+        
+            <div class="exerciseContent">
+                <div class="exerciseTitle">
+                    <h3>Exercise 1</h3>
+                </div>
+                <p>lorem</p>
+                <div class="exerciseButtons">   
+                    <button>
+                        <h3>Edit</h3>
+                    </button>
+                    <button id="delete">
+                        <h3>Delete</h3>
+                    </button>
+                </div>
             </div>
         </div>
-    
+      </div>
+      <div class="saveChangeButton" id="saveChangeButton">
+        <button class="button" type="submit"><h3>Save Changes</h3></button>
+      </div>
     </div>
-    </div>
-    
-    <div class="editTextContainer">
-    <div class="editTextTitle">
-        <h3>Edit material text</h3>
-    </div>
-    <div class="editText">
-        <textarea name="text material">
-    
-        </textarea>
-        <div class="editTextButtons">
-    
-        </div>  
-    </div>
-    </div>
-    
-    <div class="editExerciseContainer">
-    <div class="editExerciseTitle">
-        <h3>Edit exercise</h3>
-    </div>
-    <div class="exercise">
-        <img 
-        src="../../../../assets/module-profile.png" 
-        alt="exercise profile icon"
-        id="exercise-profile"
-        />
-    
-        <div class="exerciseContent">
-            <div class="exerciseTitle">
-                <h3>Exercise 1</h3>
-            </div>
-            <p>lorem</p>
-            <div class="exerciseButtons">   
-                <button>
-                    <h3>Edit</h3>
-                </button>
-                <button id="delete">
-                    <h3>Delete</h3>
-                </button>
-            </div>
-        </div>
-    </div>
-    </div>
-    `
-    )
+    `);  
+    let saveChangeButton = document.getElementsByClassName("saveChangeButton")[0];
+    let videoInput = document.getElementsByClassName(`videoInput${materialData["ID_Material"]}`)[0];
+    let teksInput = document.getElementById(`teksInput${materialData["ID_Material"]}`);
+    let videoEdit;
+    try{
+      videoEdit = videoInput.files[0]["name"];
+    } catch(error){
+      videoEdit="";
+    }
 
+
+    saveChangeButton.addEventListener("click", function(){editMaterial(materialData["ID_Material"], materialData["kode_mapel"], materialData["no_modul"],
+      materialData["judul"], videoEdit, teksInput.value.trim()
+    )}
+    );
 
 }
 
 
-function uploadVideo() {
+function uploadVideo(ID_Material) {
     // Get the file input element
-    const input = document.getElementById("videoInput");
+    const input = document.getElementsByClassName(`videoInput${ID_Material}`)[0];
 
     // Check if a file has been selected
     if (input.files.length === 0) {
@@ -143,24 +172,67 @@ function uploadVideo() {
     }
 
     // Get the selected file
-    const videoFile = input.files[0];
+    const videoFile = input.files[0]["name"];
 
     // You can now work with the selected videoFile
     // For example, you can send it to a server for processing or display it in an HTML video element.
 
     // Display the selected video (example)
-    displayVideo(videoFile);
+    displayVideo(videoFile, ID_Material);
 }
 
-function displayVideo(file) {
-    const videoContainer = document.getElementById("videoContainer");
+function deleteVideo(ID_Material) {
+    // Get the file input element
+    const input = document.getElementsByClassName(`videoInput${ID_Material}`)[0];
+
+    // Empty the file
+    const videoFile = "";
+
+    // You can now work with the selected videoFile
+    // For example, you can send it to a server for processing or display it in an HTML video element.
+
+    // Display the selected video (example)
+    displayVideo(videoFile, ID_Material);
+}
+
+function displayVideo(file, ID_Material) {
+    let videoPath = '../../Data/materivideo/';
+    const videoContainer = document.getElementById(`video${ID_Material}`);
+    videoContainer.innerHTML='';
     const video = document.createElement("video");
     video.controls = true;
-    video.src = URL.createObjectURL(file);
+    video.src = videoPath+file;
     videoContainer.appendChild(video);
 }
 
 /* Connections to Server */
+function getMaterialById(ID_Material){
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      let materialData;
+      console.log(this.responseText);
+      let serverResponse = JSON.parse(this.responseText);
+      if (serverResponse["status"]) {
+        materialData = serverResponse["data"];
+      } else {
+        materialData = null;
+      }
+      loadEditMaterialForm(materialData);
+    }
+  };
+  xhttp.open(
+    "GET",
+    "http://localhost:8000/api/materialapi/getmaterialbyid?ID_Material=" + ID_Material,
+    true
+  );
+  xhttp.setRequestHeader("Accept", "application/json");
+  xhttp.withCredentials = true;
+  xhttp.send();
+}
+
+
+
 function getMaterials(){
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
@@ -187,6 +259,7 @@ function getMaterials(){
   }
   
   function addMaterial(kode_mapel, no_modul, judul, video, teks){
+    console.log(video);
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
@@ -244,7 +317,7 @@ function getMaterials(){
     let data = {
       ID_Material:ID_Material
     };
-    xhttp.open("POST", "http://localhost:8000/api/material/deletematerial", true);
+    xhttp.open("POST", "http://localhost:8000/api/materialapi/deletematerial", true);
     xhttp.setRequestHeader("Accept", "application/json");
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.withCredentials = true;
@@ -252,10 +325,44 @@ function getMaterials(){
     
   }
   
-  
-  /* Redirect */
-  function editMaterial(ID_Material){
+
+function editMaterial(ID_Material, kode_mapel, no_modul, judul, video, teks){
+  console.log(video);
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      let serverResponse = JSON.parse(this.responseText);
+      if(serverResponse['status']){
+        if(window.confirm("Material sucessfully Edited")){
+            window.location.reload();
+        }else{
+            window.location.reload();
+        }
+      }
+      else{
+          alert("failed to edit material");
+      }
+    }
   };
+
+  let data = {
+    ID_Material: ID_Material,
+    kode_mapel: kode_mapel,
+    no_modul: no_modul,
+    judul: judul,
+    video: video,
+    teks: teks
+  };
+
+  xhttp.open("POST", "http://localhost:8000/api/materialapi/editmaterial", true);
+  xhttp.setRequestHeader("Accept", "application/json");
+  xhttp.setRequestHeader("Content-Type", "application/json");
+  xhttp.withCredentials = true;
+  xhttp.send(JSON.stringify(data));
+}
+
+  
   
   /* caller */
   window.addEventListener("load", getMaterials);

@@ -2,7 +2,7 @@
 
 class Material
 {
-    private $table = 'Material';
+    private $table = 'material';
     private $db;
 
     public function __construct()
@@ -42,7 +42,7 @@ class Material
         }
     }
 
-    public function getMaterialByKodeMapelandModuleNumber($kode_mapel, $no_modul){
+    public function getMaterialByModuleNumberandKodeMapel($kode_mapel, $no_modul){
         $this->db->query("SELECT * FROM " . $this->table . " WHERE kode_mapel = :kodeMapel AND no_modul = :noModul");
         $this->db->bindParam(':kodeMapel', $kode_mapel);
         $this->db->bindParam(':noModul', $no_modul);
@@ -53,10 +53,20 @@ class Material
             return  false;
         }
     }
+    public function getMaterialById($ID_Material){
+        $this->db->query("SELECT * FROM " . $this->table . " WHERE ID_Material = :ID_Material");
+        $this->db->bindParam(':ID_Material', $ID_Material);
+        try {
+            $this->db->execute();
+            return $this->db->getResult();
+        } catch (PDOException $e) {
+            return  false;
+        }
+    }
 
     public function addMaterial($kode_mapel, $no_modul, $judul, $video, $teks){
         $this->db->startTransaction();
-        $this->db->query("INSERT INTO " . $this->table . " VALUES (:kode_mapel, :no_modul, :judul, :video, :teks)" );
+        $this->db->query("INSERT INTO " . $this->table . " (kode_mapel, no_modul, judul, video, teks) VALUES (:kode_mapel, :no_modul, :judul, :video, :teks)" );
     
         $this->db->bindParam(':kode_mapel', $kode_mapel);
         $this->db->bindParam(':no_modul', $no_modul);
@@ -73,7 +83,27 @@ class Material
             return  false;
         }
     }
+    
+    public function editMaterial($ID_Material, $kode_mapel, $no_modul, $judul, $video, $teks){
+        $this->db->startTransaction();
+        $this->db->query("UPDATE " . $this->table . " SET kode_mapel= :kode_mapel, no_modul= :no_modul, judul= :judul, video= :video, teks= :teks WHERE ID_Material= :ID_Material" );
+    
+        $this->db->bindParam(':ID_Material', $ID_Material);
+        $this->db->bindParam(':kode_mapel', $kode_mapel);
+        $this->db->bindParam(':no_modul', $no_modul);
+        $this->db->bindParam(':judul', $judul);
+        $this->db->bindParam(':video', $video);
+        $this->db->bindParam(':teks', $teks);
 
+        try {
+            
+            $this->db->execute();
+            $this->db->commit();
+            return true;
+        } catch (PDOException $e) {
+            return  false;
+        }
+    }
 
     public function deleteMaterial($ID_Material){
         $this->db->startTransaction();

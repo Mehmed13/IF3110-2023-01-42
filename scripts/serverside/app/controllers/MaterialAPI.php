@@ -28,19 +28,31 @@ class MaterialAPI extends Controller
         }
     }
     
-    public function getMaterialByKodeMapelandModuleNumber()
+    public function getMaterialByModuleNumberandKodeMapel()
     {
         if ($_SERVER['REQUEST_METHOD'] != 'GET') {
             return json_response_fail(METHOD_NOT_ALLOWED);
         }
-        $res = $this->getModel("Material")->getMaterialByKodeMapelandModuleNumber($_GET['kode_mapel'], $_GET['module_number']);
+        $res = $this->getModel("Material")->getMaterialByModuleNumberandKodeMapel($_GET['kode_mapel'], $_GET['modulenumber']);
         if ($res) {
             json_response_success($res);
         } else {
-            json_response_fail('COURSE_NOT_FOUND');
+            json_response_fail('MATERIAL_NOT_FOUND');
         }
     }
-
+    
+    public function getMaterialById()
+    {
+        if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+            return json_response_fail(METHOD_NOT_ALLOWED);
+        }
+        $res = $this->getModel("Material")->getMaterialById($_GET['ID_Material']);
+        if ($res) {
+            json_response_success($res);
+        } else {
+            json_response_fail('MATERIAL_NOT_FOUND');
+        }
+    }
     public function addMaterial(){
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             return json_response_fail(METHOD_NOT_ALLOWED);
@@ -63,8 +75,8 @@ class MaterialAPI extends Controller
             return json_response_fail(METHOD_NOT_ALLOWED);
         }
 
-        if(isset($_POST['ID_Pengguna']) && isset($_POST['kode_mapel']) && isset($_POST['no_modul']) && isset($_POST['judul']) && isset($_POST['video']) && isset($_POST['teks'])){
-            $result = $this->getModel('Material')->editMaterial($_POST['ID_Pengguna'],  $_POST['kode_mapel'], $_POST['no_modul'], $_POST['judul'], $_POST['video'], $_POST['teks']);
+        if(isset($_POST['ID_Material']) && isset($_POST['kode_mapel']) && isset($_POST['no_modul']) && isset($_POST['judul']) && isset($_POST['video']) && isset($_POST['teks'])){
+            $result = $this->getModel('Material')->editMaterial($_POST['ID_Material'],  $_POST['kode_mapel'], $_POST['no_modul'], $_POST['judul'], $_POST['video'], $_POST['teks']);
             if ($result) {
                 json_response_success($result);
             } else {
