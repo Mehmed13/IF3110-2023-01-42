@@ -38,6 +38,7 @@ class Database
             $this->conn->exec(Tables::JAWABANSALAH_TABLE);
             $this->conn->exec(Tables::MENGAKSES_TABLE);
             $this->conn->exec(Tables::EARLY_USER);
+            $this->conn->exec(Tables::EXIST_CONTENT);
         } catch (Exception $e){
             // Do Nothing because table has been initialized
         }
