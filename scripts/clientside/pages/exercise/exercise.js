@@ -85,26 +85,4 @@ function loadSoal(questionsData) {
     );
 }
 
-exerciseData.map((el) =>
-    parentDiv.insertAdjacentHTML(
-      "beforeend",
-      `
-      <div class="exercise">
-        <p>
-          ${el.question}
-        </p>
-
-      <input type="radio" id=${el.correct_answer[0]} name=${el.question} value=${el.correct_answer[0]} />
-          <label for=${el.correct_answer[0]}>${el.correct_answer[0]}</label><br />
-      <input type="radio" id=${el.wrong_answer[0]} name=${el.question} value=${el.wrong_answer[0]} />
-          <label for=${el.wrong_answer[0]}>${el.wrong_answer[0]}</label><br />
-        <input type="radio" id=${el.wrong_answer[1]} name=${el.question} value=${el.wrong_answer[1]} />
-          <label for=${el.wrong_answer[1]}>${el.wrong_answer[1]}</label><br />
-        <input type="radio" id=${el.wrong_answer[2]} name=${el.question} value=${el.wrong_answer[2]} />
-          <label for=${el.wrong_answer[2]}>${el.wrong_answer[2]}</label><br />
-
-      </div>
-      `
-));
-
 window.addEventListener("load", getSoal);
