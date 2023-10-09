@@ -19,3 +19,6 @@ define('USERNAME_REGISTERED', 'username_registered');
 
 #==== USER HISTORY RESPONSE
 define('NO_HISTORY_FOUND', 'no_history');
+
+#=== MATERIAL RESPONSE
+define('NO_RECORDS_FOUND', 'no_records_found');
