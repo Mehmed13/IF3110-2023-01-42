@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="theme-color" content="#000000" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Material Admin</title>
+    <title>Material View</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./material_admin.css" />
+    <link rel="stylesheet" href="./material_view.css" />
     <link rel="stylesheet" href="../../style.css" />
 
     <script src="../../components/navbar/navbar.js"></script>
@@ -37,74 +37,49 @@
     <body onload="loadPage()">
         <header id="header"></header>
         <main>
-            <section class="pageLabel">
-                <h2>Material Admin</h2>
-            </section>
-            <div class="material">
-
+            <div class="material_view">
+                <section class="pageLabel">
+                    <h2>Material View</h2>
+                </section>
             </div>
-            <div class="addMaterial">
-                <button id="addMaterialButton">
-                    <h3>Add material</h3>
-                </button>
-                <div class="addMaterialForm">
-                    <div class="addMaterialData" id="kode_mapel">
-                      <div class="head">
-                        <h4>Kode Mata Pelajaran</h4>
-                      </div>
-                      <input
-                        type="text"
-                        class="materialInput"
-                        placeholder=""
-                        id="materialKodeMapel"
-                      />
-                    </div>
-                    <div class="addMaterialData" id="no_modul">
-                      <div class="head">
-                        <h4>No Modul</h4>
-                      </div>
-                      <input
-                        type="text"
-                        class="materialInput"
-                        placeholder=""
-                        id="moduleNumber"
-                      />
-                    </div>
-                    <div class="addMaterialData" id="judul">
-                      <div class="head">
-                        <h4>Judul</h4>
-                      </div>
-                      <input
-                        type="text"
-                        class="materialInput"
-                        placeholder=""
-                        id="materialTitle"
-                      />
-                    </div>
-                    <div class="addMaterialData" id="video">
-                      <div class="head">
-                        <h4>Video</h4>
-                      </div>
-                      <label for="videoInput"><p>Choose a video </p></label>
-                      <input type="file" class="videoInput video" id="videoInput" accept="video/*">
-                    </div>
-                    <div class="addMaterialData" id="teks">
-                      <div class="head">
-                        <h4>Teks</h4>
-                      </div>
-                      <textarea name="text material" id="teksInput">
-    
-                      </textarea>
-                    </div>
-                    <div class="saveButton">
-                      <button class="button" type="submit">Save New Material</button>
+            <div class="editMaterialForm">
+                <div class="editVideoContainer">
+                  <div class="editVideoTitle">
+                      <h3>Video</h3>
+                  </div>
+                    <div class="video">
+                        <video id="videoMaterial" src=""controls="true"></video>
                     </div>
                 </div>
+                  
+                <div class="editTextContainer">
+                  <div class="editTextTitle">
+                      <h3>Material</h3>
+                  </div>
+                  <div id="materialText">
+                  </div>
+                </div>
+                  
+
+
+                <div class="exercise">
+                      <img 
+                      src="../../../../assets/module-profile.png" 
+                      alt="exercise profile icon"
+                      id="exercise-profile"
+                      />
+                  
+                      <div class="exerciseContent">
+                          <div class="exerciseTitle">
+                              <h3>Exercise 1</h3>
+                          </div>
+                          <p>lorem</p>
+                      </div>
+                </div>
             </div>
-            
         </main>
 
     <footer id="footer"></footer>
   </body>
-  <script src="./material_admin.js"></script>
+  <script src="./material_view.js"></script>
 </html>
