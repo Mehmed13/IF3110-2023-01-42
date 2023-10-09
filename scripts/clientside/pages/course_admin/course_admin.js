@@ -144,7 +144,7 @@ window.addEventListener("load", getCourses);
 addCourseButton.addEventListener("click", loadAddCourseForm); 
 
 function loadPage() {
-  auth(["admin"], `/pages/home/home.html`);
+  // auth(["admin"], `/pages/home/home.html`);
   generateNavbar();
   generateFooter();
 }
