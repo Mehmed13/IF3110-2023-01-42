@@ -9,6 +9,7 @@ let addMaterialForm = document.getElementsByClassName("addMaterialForm")[0];
 let addMaterialButton = document.getElementById("addMaterialButton");
 
 function loadPage() {
+  auth(["admin"], `/pages/home/home.html`);
   generateNavbar();
   generateFooter();
 }

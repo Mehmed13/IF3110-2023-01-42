@@ -3,7 +3,7 @@
 let parentDiv = document.getElementsByClassName("course")[0];
 
 function loadPage() {
-  auth(["user"], `/pages/home/home.html`);
+  auth(["user", "admin"], `/pages/home/home.html`);
   generateNavbar();
   generateFooter();
 }
@@ -63,3 +63,4 @@ function openCourse(kode_mapel, nama_mapel){
 
 /* caller */
 window.addEventListener("load", getCourses);
+console.log("Iya euy");

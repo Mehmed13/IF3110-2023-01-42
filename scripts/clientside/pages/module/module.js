@@ -7,7 +7,7 @@ let course_name = params[1].split('=')[1].replace(/%20/g, " ");
 let parentDiv = document.getElementsByClassName("module")[0];
 
 function loadPage() {
-  auth(["user"], `/pages/home/home.html`);
+  auth(["user", "admin"], `/pages/home/home.html`);
   generateNavbar();
   generateFooter();
 }
