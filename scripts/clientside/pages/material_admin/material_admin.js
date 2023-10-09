@@ -1,3 +1,6 @@
+// Format get params.   ?kode_mapel=x&module_number=y
+
+
 let params = window.location.search.substring(1).split('&');
 let course_id = params[0].split('=')[1];
 let module_number = params[1].split('=')[1];
@@ -6,6 +9,7 @@ let addMaterialForm = document.getElementsByClassName("addMaterialForm")[0];
 let addMaterialButton = document.getElementById("addMaterialButton");
 
 function loadPage() {
+  auth(["admin"], `/pages/home/home.html`);
   generateNavbar();
   generateFooter();
 }
