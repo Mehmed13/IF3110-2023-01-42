@@ -25,39 +25,47 @@ function generateNavbarByRoles(role, profile_pict, nama_depan) {
   // find the header
   const header = document.getElementById("header");
 
-  // searchbox
-  const searchBox = document.createElement("section");
-  searchBox.classList.add("searchBox");
+  if (role !== "unregistered") {
+    // searchbox
+    const searchBox = document.createElement("section");
+    searchBox.classList.add("searchBox");
 
-  // searchButton
-  const searchButton = document.createElement("button");
-  searchButton.classList.add("searchButton");
-  const searchButtonImg = document.createElement("img");
-  searchButtonImg.src = "/assets/Lup.png";
-  searchButtonImg.alt = "Lup icon";
-  searchButton.appendChild(searchButtonImg);
+    // searchButton
+    const searchButton = document.createElement("button");
+    searchButton.classList.add("searchButton");
+    const searchButtonImg = document.createElement("img");
+    searchButtonImg.src = "/assets/Lup.png";
+    searchButtonImg.alt = "Lup icon";
+    searchButton.appendChild(searchButtonImg);
+    searchButton.addEventListener("click", function () {
+      searchWithParams();
+    });
 
-  // searchInput
-  const searchInput = document.createElement("input");
-  searchInput.type = "text";
-  searchInput.classList.add("searchInput");
-  searchInput.placeholder = "What do you want to learn?";
+    // searchInput
+    const searchInput = document.createElement("input");
+    searchInput.type = "text";
+    searchInput.classList.add("searchInput");
+    searchInput.placeholder = "What do you want to learn?";
+    searchInput.id = "nav-searchInput";
 
-  // searchFilter
-  const searchFilter = document.createElement("button");
-  searchFilter.classList.add("searchFilter");
-  const searchFilterImg = document.createElement("img");
-  searchFilterImg.src = "/assets/Filter.png";
-  searchFilterImg.alt = "Filter icon";
-  searchFilter.appendChild(searchFilterImg);
-  searchFilter.addEventListener("click", function () {
-    createFilterBox();
-  });
+    // searchFilter
+    const searchFilter = document.createElement("button");
+    searchFilter.classList.add("searchFilter");
+    const searchFilterImg = document.createElement("img");
+    searchFilterImg.src = "/assets/Filter.png";
+    searchFilterImg.alt = "Filter icon";
+    searchFilter.appendChild(searchFilterImg);
+    searchFilter.addEventListener("click", function () {
+      createFilterBox();
+    });
 
-  // Append elements to searchBox
-  searchBox.appendChild(searchButton);
-  searchBox.appendChild(searchInput);
-  searchBox.appendChild(searchFilter);
+    // Append elements to searchBox
+    searchBox.appendChild(searchButton);
+    searchBox.appendChild(searchInput);
+    searchBox.appendChild(searchFilter);
+
+    header.appendChild(searchBox);
+  }
 
   // features
   const features = document.createElement("section");
@@ -103,8 +111,6 @@ function generateNavbarByRoles(role, profile_pict, nama_depan) {
     profileButton.appendChild(profileIcon);
     features.appendChild(profileButton);
   }
-
-  header.appendChild(searchBox);
   header.appendChild(features);
 }
 
@@ -343,5 +349,38 @@ function createFilterBox() {
       </section>
     </section>`
     );
+  }
+}
+
+function searchWithParams() {
+  const headerElement = document.getElementById("header");
+  const filterBoxExists = !!headerElement.querySelector("#filterBox");
+
+  const data = {
+    searchInput: document.getElementById("nav-searchInput").value,
+  };
+
+  if (filterBoxExists) {
+    data.searchByCourseName = document.getElementById("course-name").checked;
+    data.searchByModuleName = document.getElementById("module-name").checked;
+    data.searchByMaterialName =
+      document.getElementById("material-name").checked;
+    data.filterClass10 = document.getElementById("kelas-10").checked;
+    data.filterClass11 = document.getElementById("kelas-11").checked;
+    data.filterClass12 = document.getElementById("kelas-12").checked;
+    data.sortByClass = getRadioButtonValue("class-level");
+    data.sortByName = getRadioButtonValue("name-order");
+  }
+
+  console.log("data", data);
+}
+
+function getRadioButtonValue(name) {
+  const radios = document.getElementsByName(name);
+
+  for (const radio of radios) {
+    if (radio.checked) {
+      return radio.value;
+    }
   }
 }
