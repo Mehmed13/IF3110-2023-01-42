@@ -52,6 +52,8 @@ function getMaterialById(ID_Material){
 
 function loadExercise(exerciseData)
 {
+  console.log("test: ");
+  console.log(exerciseData[0]);
   exerciseDiv.insertAdjacentHTML(
     "beforeend",
     `
@@ -64,9 +66,9 @@ function loadExercise(exerciseData)
                   
                       <div class="exerciseContent">
                           <div class="exerciseTitle">
-                              <h3>${exerciseData["judul"]}</h3>
+                              <h3>${exerciseData[0]["judul"]}</h3>
                           </div>
-                          <p>${exerciseData["deskripsi"]}</p>
+                          <p>${exerciseData[0]["deskripsi"]}</p>
                       </div>
     `
   )
@@ -94,7 +96,6 @@ function getExercise(ID_Material){
   xhttp.setRequestHeader("Accept", "application/json");
   xhttp.withCredentials = true;
   xhttp.send();
-  return exerciseData;
 }
 
 function openMaterial(){
