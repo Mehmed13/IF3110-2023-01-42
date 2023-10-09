@@ -41,4 +41,15 @@ class Exercise
             return  false;
         }
     }
+
+    public function getExerciseByMaterialID($id_material){
+        $this->db->query("SELECT * FROM " . $this->table . " WHERE ID_Material = :id_material");
+        $this->db->bindParam(':id_material', $id_material);
+        try {
+            $this->db->execute();
+            return $this->db->getAllResult();
+        } catch (PDOException $e) {
+            return  false;
+        }
+    }
 }
