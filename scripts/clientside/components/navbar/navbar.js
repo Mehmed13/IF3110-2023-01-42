@@ -50,6 +50,9 @@ function generateNavbarByRoles(role, profile_pict, nama_depan) {
   searchFilterImg.src = "/assets/Filter.png";
   searchFilterImg.alt = "Filter icon";
   searchFilter.appendChild(searchFilterImg);
+  searchFilter.addEventListener("click", function () {
+    createFilterBox();
+  });
 
   // Append elements to searchBox
   searchBox.appendChild(searchButton);
@@ -266,4 +269,79 @@ function logout() {
   xhttp.setRequestHeader("Content-Type", "application/json");
   xhttp.withCredentials = true;
   xhttp.send();
+}
+
+function createFilterBox() {
+  const headerElement = document.getElementById("header");
+  const filterBoxExists = !!headerElement.querySelector("#filterBox");
+
+  if (filterBoxExists) {
+    const filterBox = document.getElementById("filterBox");
+    headerElement.removeChild(filterBox);
+  } else {
+    headerElement.insertAdjacentHTML(
+      `afterbegin`,
+      `<section class="filterBox" id="filterBox">
+      <section class="filter-search">
+        <a>Search by</a>
+        <div class="filterListCt">
+          <div class="filter-inputCt">
+            <label>Course Name</label>
+            <div>
+              <input type="checkbox" id="course-name" />
+            </div>
+          </div>
+          <div class="filter-inputCt">
+            <label>Module Name</label>
+            <div>
+              <input type="checkbox" id="module-name" />
+            </div>
+          </div>
+        </div>
+        <div class="filter-inputCt">
+          <label>Material Name</label>
+          <div>
+            <input type="checkbox" id="material-name" />
+          </div>
+        </div>
+      </section>
+      <section class="filter-filter">
+        <a>Filter</a>
+        <div class="filterListCt">
+          <div class="filter-inputCt">
+            <label>Class</label>
+            <div class="filter-option">
+              <input type="checkbox" value="10" id="kelas-10" />10
+              <input type="checkbox" value="11" id="kelas-11" />11
+              <input type="checkbox" value="12" id="kelas-12" />12
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="filter-order">
+        <a>Order by</a>
+        <div class="filterListCt">
+          <div class="filter-inputCt">
+            <label>Class level</label>
+            <div class="filter-option">
+              <input type="radio" name="class-level" value="asc" checked />
+              Ascending
+              <input type="radio" name="class-level" value="desc" />
+              Descending
+            </div>
+          </div>
+          <div class="filter-inputCt">
+            <label>Name</label>
+            <div class="filter-option">
+              <input type="radio" name="name-order" value="asc" checked />
+              Ascending
+              <input type="radio" name="name-order" value="desc" />
+              Descending
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>`
+    );
+  }
 }
