@@ -93,9 +93,10 @@ function DisplayItem(paginatedItems,wrapper,  page) {
 
   for (let i = 0; i < paginatedItems.length; i++) {
     let item = paginatedItems[i];
-    item["image"] = "biology.jpg";
+    item["image"] = "course_logo.jpg";
 
     let item_element = document.createElement("div");
+    item_element.addEventListener("click", function(){openCourse(item["kode_mapel"], item["nama"] + " kelas " + item["kelas"])});
     item_element.classList.add("courseContent");
     item_element.innerHTML =
       ' <img src="../../assets/' +
@@ -240,24 +241,10 @@ function getExercisePagination(){
   xhttp.send();  
 }
 
-/* Pagination Call */
-// DisplayItem(course_items, course_element, rows, current_course_page);
-// SetupCoursePagination(
-//   current_course_page,
-//   course_items,
-//   course_element,
-//   course_pagination_element,
-//   rows
-//   );
-
-//   DisplayItem(exercise_items, exercise_element, rows, current_exercise_page);
-// SetupExercisePagination(
-//   current_exercise_page,
-//   exercise_items,
-//   exercise_element,
-//   exercise_pagination_element,
-//   rows
-//   );
+/* Redirect */
+function openCourse(kode_mapel, nama_mapel){
+  window.location.href= '../module/module.html?kode_mapel='+kode_mapel+" &nama_mapel=" + nama_mapel;
+}
   
   /* Main Function */
 function loadHomePage(){
