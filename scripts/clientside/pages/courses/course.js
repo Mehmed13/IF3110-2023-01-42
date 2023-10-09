@@ -15,14 +15,14 @@ function loadCourse(courseData) {
     parentDiv.insertAdjacentHTML(
       "beforeend",
       `
-      <div class="content" onclick="openCourse(${el.kode_mapel}, ${el.judul})">
+      <div class="content" onclick="openCourse('${el.kode_mapel}', '${el.nama} kelas ${el.kelas}' )">
           <img 
-          src="../../../../assets/module-profile.png" 
-          alt="module profile icon"
-          id="module-profile"
+          src="../../../../assets/course_logo.jpg" 
+          alt="course profile icon"
+          id="course-profile"
           />
           <div class="contentText">
-              <h2>${el.judul}</h2>
+              <h2>${el.nama} kelas ${el.kelas}</h2>
               <p>${el.deskripsi}</p>
           </div>
       </div>
@@ -59,8 +59,8 @@ function getCourses() {
 
 /* Redirect */
 function openCourse(kode_mapel, nama_mapel){
-  window.location.href= '../module/module.html?kode_mapel='+kode_mapel+" &nama_mapel=" + nama_mapel};
+  window.location.href= '../module/module.html?kode_mapel='+kode_mapel+" &nama_mapel=" + nama_mapel;
 
 /* caller */
+}
 window.addEventListener("load", getCourses);
-console.log("Iya euy");
