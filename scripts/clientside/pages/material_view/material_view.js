@@ -50,5 +50,8 @@ function getMaterialById(ID_Material){
   xhttp.send();
 }
 
+function openMaterial(){
+  window.location.href= '../exercise/exercise.html?id_material='+ID_Material};
+
   /* caller */
   window.addEventListener("load", function () {getMaterialById(ID_Material)});
