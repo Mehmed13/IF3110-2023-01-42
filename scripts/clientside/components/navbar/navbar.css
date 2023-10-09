@@ -10,6 +10,52 @@ header {
   z-index: 10;
 }
 
+.filterBox {
+  position: fixed;
+  top: 80px;
+  background-color: #4d2c5b;
+  padding: 10px;
+  left: 30px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.filterBox .filter-filter,
+.filterBox .filter-search,
+.filterBox .filter-order {
+  background-color: white;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.filterBox a {
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.filter .filterListCt {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-inputCt {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-inputCt label {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.filter-option {
+  font-size: 12px;
+}
+
 .navPopup {
   width: 300px;
   position: fixed;

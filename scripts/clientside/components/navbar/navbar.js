@@ -25,36 +25,47 @@ function generateNavbarByRoles(role, profile_pict, nama_depan) {
   // find the header
   const header = document.getElementById("header");
 
-  // searchbox
-  const searchBox = document.createElement("section");
-  searchBox.classList.add("searchBox");
+  if (role !== "unregistered") {
+    // searchbox
+    const searchBox = document.createElement("section");
+    searchBox.classList.add("searchBox");
 
-  // searchButton
-  const searchButton = document.createElement("button");
-  searchButton.classList.add("searchButton");
-  const searchButtonImg = document.createElement("img");
-  searchButtonImg.src = "/assets/Lup.png";
-  searchButtonImg.alt = "Lup icon";
-  searchButton.appendChild(searchButtonImg);
+    // searchButton
+    const searchButton = document.createElement("button");
+    searchButton.classList.add("searchButton");
+    const searchButtonImg = document.createElement("img");
+    searchButtonImg.src = "/assets/Lup.png";
+    searchButtonImg.alt = "Lup icon";
+    searchButton.appendChild(searchButtonImg);
+    searchButton.addEventListener("click", function () {
+      searchWithParams();
+    });
 
-  // searchInput
-  const searchInput = document.createElement("input");
-  searchInput.type = "text";
-  searchInput.classList.add("searchInput");
-  searchInput.placeholder = "What do you want to learn?";
+    // searchInput
+    const searchInput = document.createElement("input");
+    searchInput.type = "text";
+    searchInput.classList.add("searchInput");
+    searchInput.placeholder = "What do you want to learn?";
+    searchInput.id = "nav-searchInput";
 
-  // searchFilter
-  const searchFilter = document.createElement("button");
-  searchFilter.classList.add("searchFilter");
-  const searchFilterImg = document.createElement("img");
-  searchFilterImg.src = "/assets/Filter.png";
-  searchFilterImg.alt = "Filter icon";
-  searchFilter.appendChild(searchFilterImg);
+    // searchFilter
+    const searchFilter = document.createElement("button");
+    searchFilter.classList.add("searchFilter");
+    const searchFilterImg = document.createElement("img");
+    searchFilterImg.src = "/assets/Filter.png";
+    searchFilterImg.alt = "Filter icon";
+    searchFilter.appendChild(searchFilterImg);
+    searchFilter.addEventListener("click", function () {
+      createFilterBox();
+    });
 
-  // Append elements to searchBox
-  searchBox.appendChild(searchButton);
-  searchBox.appendChild(searchInput);
-  searchBox.appendChild(searchFilter);
+    // Append elements to searchBox
+    searchBox.appendChild(searchButton);
+    searchBox.appendChild(searchInput);
+    searchBox.appendChild(searchFilter);
+
+    header.appendChild(searchBox);
+  }
 
   // features
   const features = document.createElement("section");
@@ -100,8 +111,6 @@ function generateNavbarByRoles(role, profile_pict, nama_depan) {
     profileButton.appendChild(profileIcon);
     features.appendChild(profileButton);
   }
-
-  header.appendChild(searchBox);
   header.appendChild(features);
 }
 
@@ -266,4 +275,146 @@ function logout() {
   xhttp.setRequestHeader("Content-Type", "application/json");
   xhttp.withCredentials = true;
   xhttp.send();
+}
+
+function createFilterBox() {
+  const headerElement = document.getElementById("header");
+  const filterBoxExists = !!headerElement.querySelector("#filterBox");
+
+  if (filterBoxExists) {
+    const filterBox = document.getElementById("filterBox");
+    headerElement.removeChild(filterBox);
+  } else {
+    headerElement.insertAdjacentHTML(
+      `afterbegin`,
+      `<section class="filterBox" id="filterBox">
+      <section class="filter-search">
+        <a>Search by</a>
+        <div class="filterListCt">
+          <div class="filter-inputCt">
+            <label>Course Name</label>
+            <div>
+              <input type="checkbox" id="course-name" />
+            </div>
+          </div>
+          <div class="filter-inputCt">
+            <label>Module Name</label>
+            <div>
+              <input type="checkbox" id="module-name" />
+            </div>
+          </div>
+        </div>
+        <div class="filter-inputCt">
+          <label>Material Name</label>
+          <div>
+            <input type="checkbox" id="material-name" />
+          </div>
+        </div>
+      </section>
+      <section class="filter-filter">
+        <a>Filter</a>
+        <div class="filterListCt">
+          <div class="filter-inputCt">
+            <label>Class</label>
+            <div class="filter-option">
+              <input type="checkbox" value="10" id="kelas-10" />10
+              <input type="checkbox" value="11" id="kelas-11" />11
+              <input type="checkbox" value="12" id="kelas-12" />12
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="filter-order">
+        <a>Order by</a>
+        <div class="filterListCt">
+          <div class="filter-inputCt">
+            <label>Class level</label>
+            <div class="filter-option">
+              <input type="radio" name="class-level" value="asc" checked />
+              Ascending
+              <input type="radio" name="class-level" value="desc" />
+              Descending
+            </div>
+          </div>
+          <div class="filter-inputCt">
+            <label>Name</label>
+            <div class="filter-option">
+              <input type="radio" name="name-order" value="asc" checked />
+              Ascending
+              <input type="radio" name="name-order" value="desc" />
+              Descending
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>`
+    );
+  }
+}
+
+function searchWithParams() {
+  const headerElement = document.getElementById("header");
+  const filterBoxExists = !!headerElement.querySelector("#filterBox");
+
+  const data = {
+    searchInput: document.getElementById("nav-searchInput").value,
+    searchByCourseName: false,
+    searchByModuleName: false,
+    searchByMaterialName: true,
+    filterClass10: true,
+    filterClass11: true,
+    filterClass12: true,
+    sortByClass: "asc",
+    sortByName: "asc",
+  };
+
+  if (filterBoxExists) {
+    data.searchByCourseName = document.getElementById("course-name").checked;
+    data.searchByModuleName = document.getElementById("module-name").checked;
+    data.searchByMaterialName =
+      document.getElementById("material-name").checked;
+    data.filterClass10 = document.getElementById("kelas-10").checked;
+    data.filterClass11 = document.getElementById("kelas-11").checked;
+    data.filterClass12 = document.getElementById("kelas-12").checked;
+    data.sortByClass = getRadioButtonValue("class-level");
+    data.sortByName = getRadioButtonValue("name-order");
+  }
+  if (data.searchInput == "" || data.searchInput == undefined) {
+    data.searchInput = "a";
+  }
+
+  window.location = dataToURI(data);
+}
+
+function getRadioButtonValue(name) {
+  const radios = document.getElementsByName(name);
+
+  for (const radio of radios) {
+    if (radio.checked) {
+      return radio.value;
+    }
+  }
+}
+
+function dataToURI(data) {
+  return (
+    `http://localhost:8080/pages/material/material.html?keyword=` +
+    data.searchInput +
+    `&searchby=` +
+    data.searchByCourseName +
+    `,` +
+    data.searchByModuleName +
+    `,` +
+    data.searchByMaterialName +
+    `&filterclass=` +
+    data.filterClass10 +
+    `,` +
+    data.filterClass11 +
+    `,` +
+    data.filterClass12 +
+    `&orderbyclass=` +
+    data.sortByClass +
+    `&orderbyname=` +
+    data.sortByName
+  );
 }
