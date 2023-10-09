@@ -358,6 +358,14 @@ function searchWithParams() {
 
   const data = {
     searchInput: document.getElementById("nav-searchInput").value,
+    searchByCourseName: false,
+    searchByModuleName: false,
+    searchByMaterialName: true,
+    filterClass10: true,
+    filterClass11: true,
+    filterClass12: true,
+    sortByClass: "asc",
+    sortByName: "asc",
   };
 
   if (filterBoxExists) {
@@ -371,8 +379,11 @@ function searchWithParams() {
     data.sortByClass = getRadioButtonValue("class-level");
     data.sortByName = getRadioButtonValue("name-order");
   }
+  if (data.searchInput == "" || data.searchInput == undefined) {
+    data.searchInput = "a";
+  }
 
-  console.log("data", data);
+  window.location = dataToURI(data);
 }
 
 function getRadioButtonValue(name) {
@@ -383,4 +394,27 @@ function getRadioButtonValue(name) {
       return radio.value;
     }
   }
+}
+
+function dataToURI(data) {
+  return (
+    `http://localhost:8080/pages/material/material.html?keyword=` +
+    data.searchInput +
+    `&searchby=` +
+    data.searchByCourseName +
+    `,` +
+    data.searchByModuleName +
+    `,` +
+    data.searchByMaterialName +
+    `&filterclass=` +
+    data.filterClass10 +
+    `,` +
+    data.filterClass11 +
+    `,` +
+    data.filterClass12 +
+    `&orderbyclass=` +
+    data.sortByClass +
+    `&orderbyname=` +
+    data.sortByName
+  );
 }
