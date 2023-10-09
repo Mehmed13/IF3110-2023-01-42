@@ -5,7 +5,7 @@ let addModuleForm = document.getElementsByClassName("addModuleForm")[0];
 let addModuleButton = document.getElementById("addModuleButton");
 
 function loadPage() {
-  auth(["admin"], `/pages/home/home.html`);
+  // auth(["admin"], `/pages/home/home.html`);
   generateNavbar();
   generateFooter();
 }
@@ -33,7 +33,7 @@ function loadModule(moduleData) {
           </div>
           `
           )
-          );
+    );
 }
         
 function loadAddModuleForm(){
