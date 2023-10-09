@@ -147,66 +147,60 @@ function loadEditMaterialForm(materialData)
     </div>
     `);  
     let saveChangeButton = document.getElementsByClassName("saveChangeButton")[0];
-    let videoInput = document.getElementsByClassName(`videoInput${materialData["ID_Material"]}`)[0];
     let teksInput = document.getElementById(`teksInput${materialData["ID_Material"]}`);
-    let videoEdit;
-    try{
-      videoEdit = videoInput.files[0]["name"];
-    } catch(error){
-      videoEdit="";
-    }
 
 
     saveChangeButton.addEventListener("click", function(){editMaterial(materialData["ID_Material"], materialData["kode_mapel"], materialData["no_modul"],
-      materialData["judul"], videoEdit, teksInput.value.trim()
+    materialData["judul"], document.getElementById(`video${materialData["ID_Material"]}`).firstElementChild.src.match(/\/([^\/?#]+)$/)[1] , teksInput.value.trim()
     )}
     );
-
+    
 }
 
 
 function uploadVideo(ID_Material) {
-    // Get the file input element
-    const input = document.getElementsByClassName(`videoInput${ID_Material}`)[0];
-
+  // Get the file input element
+  const input = document.getElementsByClassName(`videoInput${ID_Material}`)[0];
+  
   // Check if a file has been selected
   if (input.files.length === 0) {
     alert("Please select a video file.");
     return;
   }
-
-    // Get the selected file
-    const videoFile = input.files[0]["name"];
-
-    // You can now work with the selected videoFile
-    // For example, you can send it to a server for processing or display it in an HTML video element.
-
-    // Display the selected video (example)
-    displayVideo(videoFile, ID_Material);
+  
+  // Get the selected file
+  const videoFile = input.files[0]["name"];
+  
+  // You can now work with the selected videoFile
+  // For example, you can send it to a server for processing or display it in an HTML video element.
+  
+  // Display the selected video (example)
+  displayVideo(videoFile, ID_Material);
 }
 
 function deleteVideo(ID_Material) {
-    // Get the file input element
-    const input = document.getElementsByClassName(`videoInput${ID_Material}`)[0];
-
-    // Empty the file
-    const videoFile = "";
-
+  // Get the file input element
+  const input = document.getElementsByClassName(`videoInput${ID_Material}`)[0];
+  
+  // Empty the file
+  const videoFile = "";
+  
   // You can now work with the selected videoFile
   // For example, you can send it to a server for processing or display it in an HTML video element.
-
-    // Display the selected video (example)
-    displayVideo(videoFile, ID_Material);
+  
+  // Display the selected video (example)
+  displayVideo(videoFile, ID_Material);
 }
 
 function displayVideo(file, ID_Material) {
-    let videoPath = '../../Data/materivideo/';
-    const videoContainer = document.getElementById(`video${ID_Material}`);
-    videoContainer.innerHTML='';
-    const video = document.createElement("video");
-    video.controls = true;
-    video.src = videoPath+file;
-    videoContainer.appendChild(video);
+  let videoPath = '../../Data/materivideo/';
+  const videoContainer = document.getElementById(`video${ID_Material}`);
+  videoContainer.innerHTML='';
+  const video = document.createElement("video");
+  video.controls = true;
+  video.src = videoPath+file;
+  console.log(video);
+  videoContainer.appendChild(video);
 }
 
 /* Connections to Server */

@@ -60,7 +60,6 @@ function getCourses() {
 /* Redirect */
 function openCourse(kode_mapel, nama_mapel){
   window.location.href= '../module/module.html?kode_mapel='+kode_mapel+" &nama_mapel=" + nama_mapel;
-
-/* caller */
 }
+/* caller */
 window.addEventListener("load", getCourses);
