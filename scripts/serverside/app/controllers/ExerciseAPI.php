@@ -14,6 +14,19 @@ class ExerciseAPI extends Controller
         }
     }
 
+    public function getAllExercise()
+    {
+        if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+            return json_response_fail(METHOD_NOT_ALLOWED);
+        }
+        $res = $this->getModel("Exercise")->getAllExercise();
+        if ($res) {
+            json_response_success($res);
+        } else {
+            json_response_fail('EXERCISE_NOT_FOUND');
+        }
+    }
+
     public function getNumberOfExercise()
     {
         if ($_SERVER['REQUEST_METHOD'] != 'GET') {
