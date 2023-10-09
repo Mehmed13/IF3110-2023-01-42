@@ -8,7 +8,7 @@ main{
     color: #4D2C5E;
 }
 
-.course{
+.course .content{
     width: 80%;
     background-color: white;
     display: block;
@@ -21,19 +21,17 @@ main{
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-.course:hover{
-    scale: 110%;
+.course .content:hover{
+    background-color: #d4d0d0;
+    cursor: pointer;
 }
 
-.course:active{
-    background-color: rgb(229, 235, 240);
-}
-
-.course img{
+.course .content img{
     width: 20%;
     max-width: 138px;
     max-height: 126px;
     padding: 3%;
+    border-radius: 50%;
 }
 
 .course-link {
