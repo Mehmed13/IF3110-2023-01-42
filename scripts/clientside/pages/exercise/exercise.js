@@ -2,7 +2,7 @@ let id_material = window.location.search.substring(1).split('=')[1];
 let parentDiv = document.getElementsByClassName("exercisePlaceholder")[0];
 
 function loadPage() {
-  // auth(["admin", "user"], `/pages/home/home.html`);
+  auth(["admin", "user"], `/pages/home/home.html`);
   generateNavbar();
   generateFooter();
 }

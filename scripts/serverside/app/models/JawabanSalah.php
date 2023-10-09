@@ -21,4 +21,22 @@ class JawabanSalah
             return  false;
         }
     }
+
+    public function addJawabanSalah($id_soal, $jawaban_salah1, $jawaban_salah2, $jawaban_salah3){
+        $this->db->startTransaction();
+        $this->db->query("INSERT INTO " . $this->table . " VALUES (:ID_Soal, :jawaban_salah1), (:ID_Soal, :jawaban_salah2), (:ID_Soal, :jawaban_salah3)" );
+        
+        $this->db->bindParam(':ID_Soal', $id_soal);
+        $this->db->bindParam(':jawaban_salah1', $jawaban_salah1);
+        $this->db->bindParam(':jawaban_salah2', $jawaban_salah2);
+        $this->db->bindParam(':jawaban_salah3', $jawaban_salah3);
+        try {
+            
+            $this->db->execute();
+            $this->db->commit();
+            return true;
+        } catch (PDOException $e) {
+            return  false;
+        }
+    }
 }

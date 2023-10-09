@@ -40,36 +40,92 @@
       <section class="pageLabel">
         <h2>Exercise Admin</h2>
       </section>
-      <div class="excersie"></div>
+      <div class="questionPlaceholder"></div>
       <div class="addQuestion">
         <button id="addQuestionButton" class="button">
-          <h3>Add Question</h3>
+          <h3>Add question</h3>
         </button>
         <div class="addQuestionForm">
-          <div class="addQuestion" id="kode_mapel">
+          <div class="addQuestionData" id="id_soal">
             <div class="head">
-              <h4>Kode Soal</h4>
+              <h4>ID Soal</h4>
             </div>
             <input
               type="text"
-              class="moduleInput"
+              class="questionInput"
               placeholder=""
-              id="moduleKodeMapel"
+              id="id_soal"
             />
           </div>
-          <div class="addModuleData" id="no_modul">
+          <div class="addQuestionData" id="nomor">
+            <div class="head">
+              <h4>Nomor</h4>
+            </div>
+            <input
+              type="text"
+              class="questionInput"
+              placeholder=""
+              id="nomor"
+            />
+          </div>
+          <div class="addQuestionData" id="soal">
             <div class="head">
               <h4>Soal</h4>
             </div>
             <input
               type="text"
-              class="moduleInput"
+              class="questionInput"
               placeholder=""
-              id="moduleNumber"
+              id="soal"
             />
           </div>
+          <div class="addQuestionData" id="jawaban_benar">
+            <div class="head">
+              <h4>Jawaban benar</h4>
+            </div>
+            <input
+              type="text"
+              class="questionInput"
+              placeholder=""
+              id="jawaban_benar"
+            />
+          </div>
+          <div class="addQuestionData" id="jawaban_salah1">
+            <div class="head">
+              <h4>Jawaban salah</h4>
+            </div>
+            <input
+              type="text"
+              class="questionInput"
+              placeholder=""
+              id="jawaban_salah1"
+            />
+          </div>
+          <div class="addQuestionData" id="jawaban_salah2">
+            <div class="head">
+              <h4>Jawaban salah</h4>
+            </div>
+            <input
+              type="text"
+              class="questionInput"
+              placeholder=""
+              id="jawaban_salah2"
+            />
+          </div>
+          <div class="addQuestionData" id="jawaban_salah3">
+            <div class="head">
+              <h4>Jawaban salah</h4>
+            </div>
+            <input
+              type="text"
+              class="questionInput"
+              placeholder=""
+              id="jawaban_salah3"
+            />
+          </div>
+          
           <div class="saveButton">
-            <button class="button" type="submit">Save New Module</button>
+            <button class="button" type="submit">Save New Question</button>
           </div>
         </div>
       </div>
@@ -77,5 +133,5 @@
 
     <footer id="footer"></footer>
   </body>
-  <script src="./exercise.js"></script>
+  <script src="./exercise_admin.js"></script>
 </html>
