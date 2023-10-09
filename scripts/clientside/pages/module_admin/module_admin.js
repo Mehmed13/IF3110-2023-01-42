@@ -33,7 +33,7 @@ function loadModule(moduleData) {
           </div>
           `
           )
-          );
+    );
 }
         
 function loadAddModuleForm(){

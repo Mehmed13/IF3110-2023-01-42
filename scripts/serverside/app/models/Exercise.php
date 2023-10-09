@@ -41,5 +41,4 @@ class Exercise
             return  false;
         }
     }
-
 }

@@ -26,6 +26,5 @@ class ExerciseAPI extends Controller
             json_response_fail('EXERCISE_NOT_FOUND');
         }
     }
-
 }
 
