@@ -18,7 +18,7 @@ function loadMaterial(materialData)
     let videoPath = '../../Data/materivideo/';
     let videoMaterial = document.getElementById("videoMaterial");
     let materialText = document.getElementById("materialText");
-
+    console.log(materialData["video"]);
     videoMaterial.src = videoPath+materialData["video"];
     materialText.innerHTML = `<p>${materialData["teks"]}</p>`
 }
