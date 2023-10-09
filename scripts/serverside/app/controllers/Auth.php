@@ -13,7 +13,7 @@ class Auth extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (isset($_SESSION["user"])) {
-                json_response_fail(ALREADY_LOGIN);
+                json_response_fail($_SESSION["user"]);
                 return;
             }
             if (!(isset($_POST['username']) && isset($_POST['password']))) {
@@ -21,21 +21,20 @@ class Auth extends Controller
                 return;
             }
             $res = $this->model->login($_POST['username'], $_POST['password']);
-            if ($res) {
-                $data = array('username' => $res['username'], "email" => $res['email']);
+            if ($res[0]) {
                 $_SESSION["user"] = array(
-                    'ID_Pengguna' => $res['ID_Pengguna'],
-                    'nama_depan' => $res['nama_depan'],
-                    'nama_belakang' => $res['nama_belakang'],
-                    'username' => $res['username'],
-                    'email' => $res['email'],
-                    'isVerified' => $res['isVerified'],
-                    'role' => $res['role'],
-                    'profile_pict' => $res['profile_pict']
+                    'ID_Pengguna' => $res[1]['ID_Pengguna'],
+                    'nama_depan' => $res[1]['nama_depan'],
+                    'nama_belakang' => $res[1]['nama_belakang'],
+                    'username' => $res[1]['username'],
+                    'email' => $res[1]['email'],
+                    'isVerified' => $res[1]['isVerified'],
+                    'role' => $res[1]['role'],
+                    'profile_pict' => $res[1]['profile_pict']
                 );
-                json_response_success($data);
+                json_response_success($_SESSION);
             } else {
-                json_response_fail(ACCOUNT_NOT_FOUND);
+                json_response_fail($res[1]);
             }
         } else {
             json_response_fail(METHOD_NOT_ALLOWED);

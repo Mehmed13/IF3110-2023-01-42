@@ -1,45 +1,100 @@
-const DATA_PATH = "../../../../../Data"
-const PROFILE_PICTURE_PATH = DATA_PATH + "/profilePicture"
+// const
+const DEFAULT_PROFILE_PICT_PATH = BASE_PROFILE_PICTURE_PATH + "default.jpg";
 
-var profilePictureURL = PROFILE_PICTURE_PATH+"/";
-var defaultProfilePictureURL = "../../assets/albert.jpg";
-var inputFile = document.getElementById("profilePhotoFile");
-var profileImage = document.getElementById("output");
-var profileIcon = document.getElementById("profileIcon");
+/* Profile form */
+let inputFile = document.getElementById("profilePhotoFile");
+let profileImage = document.getElementById("profileImage");
+let profileFirstName = document.getElementById("profileFirstName");
+let profileLastName = document.getElementById("profileLastName");
+let profileUsername = document.getElementById("profileUsername");
+let profileEmail = document.getElementById("profileEmail");
+let profilePassword = document.getElementById("profilePassword");
+let saveChangesButton = document.querySelector(".saveButton .button");
 
-// Dummy, nantinya bakal disesuaiin ama user yg login 
-var profileId = 2;
+let ID_Pengguna = 0;
 
-function loadFile(event) {
-    profileImage.src = URL.createObjectURL(event.target.files[0]);
-    profileIcon.src = URL.createObjectURL(event.target.files[0]);
+profileImage.onerror = function () {
+  setDefaultImg("profileImage");
 };
 
-function loadProfile(profilePictureURL){
-  profileImage.src = profilePictureURL;
-  profileIcon.src = profilePictureURL;
+function loadPage() {
+  auth(["admin", "user"], `/pages/home/home.html`);
+  generateNavbar();
+  generateFooter();
+  getSession()
+    .then((session) => {
+      loadProfile(session["data"]);
+    })
+    .catch((err) => {
+      console.log("err", err);
+    });
 }
 
+function loadFile(event) {
+  profileImage.src = BASE_PROFILE_PICTURE_PATH + event.target.files[0]["name"];
+  console.log("nama file", event.target.files[0]);
+}
 
-function getProfilePicture(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(){
-        if(this.readyState==4 && this.status==200){
-            var profileFile = JSON.parse(this.responseText);
-            if(profileFile['status']){
-                profilePictureURL+= profileFile['data']['profile_pict'];
-            }else{
-                profilePictureURL = defaultProfilePictureURL;
-            }
-            loadProfile(profilePictureURL);
-        }
-    };
-    xhttp.open("GET","http://localhost:8000/api/userapi/getprofile?profile_id="+profileId,true);
-    xhttp.setRequestHeader("Accept", "application/json");
-    xhttp.withCredentials = true;
-    xhttp.send();
+function loadProfile(profileData) {
+  profileImage.src = BASE_PROFILE_PICTURE_PATH + profileData["profile_pict"];
+  profileFirstName.value = profileData["nama_depan"];
+  profileLastName.value = profileData["nama_belakang"];
+  profileUsername.value = profileData["username"];
+  profileEmail.value = profileData["email"];
+  profilePassword.value = "";
+  ID_Pengguna = profileData["ID_Pengguna"];
+}
+
+function editProfile() {
+  const data = {
+    ID_Pengguna: ID_Pengguna,
+    nama_depan: profileFirstName.value,
+    nama_belakang: profileLastName.value,
+    email: profileEmail.value,
+    password: profilePassword.value,
+    profile_pict: profileImage.src.match(/\/([^\/?#]+)$/)[1],
+    username: profileUsername.value,
+  };
+
+  if (!checkEmail(data.email)) {
+    alertNotification(false, "Email not valid");
+  } else if (data.password == "") {
+    alertNotification(false, "Password cannot be blank");
+  } else {
+    editProfileToBackend(data);
+  }
+}
+
+function editProfileToBackend(data) {
+  let xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      const res = JSON.parse(this.responseText);
+      if (res.status && res.data) {
+        alertNotification(true, "Changes saved successfully");
+      } else if (res.data === "username_registered") {
+        alertNotification(false, "Username already exists");
+      } else if (res.data === "email_registered") {
+        alertNotification(false, "Email already exists");
+      } else {
+        alertNotification(false, "Unknown error");
+      }
+    }
+  };
+
+  xhttp.open("POST", "http://localhost:8000/api/userapi/editprofile", true);
+  xhttp.setRequestHeader("Accept", "application/json");
+  xhttp.setRequestHeader("Content-Type", "application/json");
+  xhttp.withCredentials = true;
+  xhttp.send(JSON.stringify(data));
+}
+
+function checkEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 }
 
 inputFile.addEventListener("change", loadFile);
-// profileImage.addEventListener("load", loadProfile)
-window.addEventListener("load", getProfilePicture);
+saveChangesButton.addEventListener("click", editProfile);
+
+// Untuk update profile, profile picture yang lama akan dihapus dari storage

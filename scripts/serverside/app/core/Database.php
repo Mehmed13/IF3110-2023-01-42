@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../constants/base.php';
+require_once __DIR__ . '/./Tables.php';  
 
 class Database
 {
@@ -15,12 +16,31 @@ class Database
             PDO::ATTR_TIMEOUT => 600,
             PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
         ];
+
+
+        // Establish connection
         try {
             $this->conn = new PDO($dsn, DB_USERNAME, DB_PASSWORD, $option);
             // Set the PDO error mode to exception
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
+        }
+
+        // Create initialization table (if not exist)
+        try{
+            $this->conn->exec(Tables::PENGGUNA_TABLE);
+            $this->conn->exec(Tables::MATAPELAJARAN_TABLE);
+            $this->conn->exec(Tables::MODUL_TABLE);
+            $this->conn->exec(Tables::MATERIAL_TABLE);
+            $this->conn->exec(Tables::LATIHANSOAL_TABLE);
+            $this->conn->exec(Tables::SOAL_TABLE);
+            $this->conn->exec(Tables::JAWABANSALAH_TABLE);
+            $this->conn->exec(Tables::MENGAKSES_TABLE);
+            $this->conn->exec(Tables::EARLY_USER);
+            $this->conn->exec(Tables::EXIST_CONTENT);
+        } catch (Exception $e){
+            // Do Nothing because table has been initialized
         }
     }
 
@@ -36,7 +56,8 @@ class Database
     public function commit()
     {
         try {
-            $this->conn->beginTransaction();
+            // $this->conn->beginTransaction();
+            $this->conn->commit();
         } catch (PDOException $e) {
             return $this->conn->commit();
         }
@@ -50,8 +71,6 @@ class Database
             return $this->conn->rollBack();
         }
     }
-
-
 
     public function query($query)
     {
